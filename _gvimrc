@@ -1,0 +1,14 @@
+" vim:fdm=marker
+" -------------------------------------------------------------------------
+"  _gvimrc main
+" -------------------------------------------------------------------------
+colorscheme darkblue " カラー設定:
+set guifont=MeiryoKe_Console:h9:cSHIFTJIS
+set linespace=1
+if has('multi_byte_ime')  "IME状態に応じたカーソル色を設定
+    highlight Cursor   guifg=#000d18 guibg=#8faf9f gui=bold
+    highlight CursorIM guifg=#ff7f50 guibg=#ff4500 gui=bold "赤っぽい
+endif
+" <C-g>tで背景透過,<C-g>gで戻す
+map <C-g>t :set transparency=220<CR>
+map <C-g>g :set transparency=0<CR>
