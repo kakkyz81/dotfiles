@@ -52,7 +52,7 @@ set undodir=D:\temp
 set nopaste               " for neocomplcache
 syntax on                 " Enable syntax highlighting
 " ------------------------ }}}
-" * tab 		          {{{
+" * tab                   {{{
 set expandtab
 set tabstop=4             "Tab文字を画面上の見た目で何文字幅にするか設定
 set shiftwidth=4          "自動で挿入されるタブの幅
@@ -109,7 +109,7 @@ map <silent> <F12> :call BufferList()<CR>
 nmap ,gc :Gcommit<CR>
 nmap ,gl :Glog<CR>
 nmap ,gd :Gdiff<CR>
-nmap ,gs :GStatus<CR>
+nmap ,gs :Gstatus<CR>
 " ------------------------ }}}
 " * QFixHowm               {{{
 let howm_dir              = '~/.vim_junk/howm'
@@ -202,7 +202,7 @@ let g:neocomplcache_enable_smart_case            = 1 " Use smartcase.(大文字が入
 let g:neocomplcache_enable_camel_case_completion = 0 " camelCaseCompletion. FAと入力すると、内部ではF*A*のように変換する機能 無効
 let g:neocomplcache_enable_underbar_completion   = 1 " _区切りの補完 有効化
 let g:neocomplcache_min_syntax_length            = 3 " シンタックスをキャッシュするときの最小文字長
-let g:neocomplcache_temporary_dir				 = 'R:\Temp\.neocon'
+let g:neocomplcache_temporary_dir                = 'R:\Temp\.neocon'
 " let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*' " ku.vimやfizzyfinderなど、相性の悪いplugin用 不要
 " Define dictionary. 
 let g:neocomplcache_dictionary_filetype_lists = {
