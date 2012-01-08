@@ -45,10 +45,11 @@ set scrolloff=5           "スクロールするとき上下に余裕を確保する
 set laststatus=2
 set modeline
 set modelines=5
-set clipboard+=unnamed    " clipboard
+set clipboard=unnamedplus,unnamed
 set backupdir=D:\temp
 set undofile              " 再読込、vim終了後も継続するundo
 set undodir=D:\temp
+set nopaste               " for neocomplcache
 syntax on                 " Enable syntax highlighting
 " ------------------------ }}}
 " * tab 		          {{{
@@ -104,18 +105,11 @@ map <F9> :w<CR>:source %<CR>
 "map <F11>
 map <silent> <F12> :call BufferList()<CR>
 " ------------------------ }}}
-" * key mapping            {{{
-nmap ,r <Plug>(quickrun)
-map <C-w>t :tabn<CR>
-map <C-w>e :tabnew
-map <C-w>w :set wrap!<CR>
-map <ESC><ESC> :noh<CR>:cclose<CR>
-imap <C-l> <Right>
-" ------------------------ }}}
 " * fugitive               {{{
 nmap ,gc :Gcommit<CR>
 nmap ,gl :Glog<CR>
 nmap ,gd :Gdiff<CR>
+nmap ,gs :GStatus<CR>
 " ------------------------ }}}
 " * QFixHowm               {{{
 let howm_dir              = '~/.vim_junk/howm'
@@ -160,13 +154,20 @@ let QFixHowm_HolidayFile           = 'Sche-Hd-0000-00-00-000000.*'
 let QFixHowm_ReminderPriority      = {'@' : 1, '!' : 1, '+' : 3, '-' : 4, '~' : 5, '.' : 6} " @と!を同じ並びに
 let QFixHowm_ReminderHolidayName   = '元日\|成人の日\|建国記念の日\|昭和の日\|憲法記念日\|みどりの日\|こどもの日\|海の日\|敬老の日\|体育の日\|文化の日\|勤労感謝の日\|天皇誕生日\|春分の日\|秋分の日\|振替休日\|国民の休日\|日曜日\|土曜日'
 " keymap
-nmap fa fT<Right>+<Space>
+nmap fd :<C-U>call qfixmemo#InsertDate('Date')<CR><Right>
+nmap fT :<C-U>call qfixmemo#InsertDate('Time')<CR><Right>
+" insert action
+nmap fa fT+<Space>
+" もともと faにマッピングされていたもの(memo zenbu list)
+nmap fz :<C-U>call qfixmemo#ListCmd()<CR>
 " タイトル行検索正規表現の辞書を初期化
 let QFixMRU_Title = {}
 " MRUでタイトル行とみなす正規表現(Vimの正規表現で指定)
 let QFixMRU_Title['mkd']       = '^###[^#]'
 " grepでタイトル行とみなす正規表現(使用するgrepによっては変更する必要があります)
 let QFixMRU_Title['mkd_regxp'] = '^###[^#]'
+" 外部ブラウザ
+let QFixHowm_OpenURIcmd        = '!start ' . $HOMEPATH . '\AppData\Local\Google\Chrome\Application\chrome.exe %s --disk-cache-dir="R:\Temp\Chrome"'
 " ------------------------ }}}
 " * unite                  {{{
 "
@@ -201,6 +202,7 @@ let g:neocomplcache_enable_smart_case            = 1 " Use smartcase.(大文字が入
 let g:neocomplcache_enable_camel_case_completion = 0 " camelCaseCompletion. FAと入力すると、内部ではF*A*のように変換する機能 無効
 let g:neocomplcache_enable_underbar_completion   = 1 " _区切りの補完 有効化
 let g:neocomplcache_min_syntax_length            = 3 " シンタックスをキャッシュするときの最小文字長
+let g:neocomplcache_temporary_dir				 = 'R:\Temp\.neocon'
 " let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*' " ku.vimやfizzyfinderなど、相性の悪いplugin用 不要
 " Define dictionary. 
 let g:neocomplcache_dictionary_filetype_lists = {
@@ -265,6 +267,14 @@ let vimshell_user_prompt    = 'getcwd()'
 " ------------------------ }}}
 " * cursoroverdictionary.vim"{{{
 vnoremap e y:CODSelected<CR>
+" ------------------------ }}}
+" * key mapping            {{{
+nmap ,r <Plug>(quickrun)
+map <C-w>t :tabn<CR>
+map <C-w>e :tabnew
+map <C-w>w :set wrap!<CR>
+map <ESC><ESC> :noh<CR>:cclose<CR>
+
 " ------------------------ }}}
 " * sources               "{{{
 source ~/.vim/vimrc_source/hatena.vimrc
