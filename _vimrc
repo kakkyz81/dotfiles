@@ -27,6 +27,7 @@ Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
 Bundle 'fuenor/qfixhowm'
 Bundle 'h1mesuke/unite-outline'
+Bundle 'kakkyz81/evervim'
 " from vim.org
 Bundle 'YankRing.vim'
 Bundle 'bufferlist.vim'
@@ -283,6 +284,7 @@ map <ESC><ESC> :noh<CR>:cclose<CR>
 " ------------------------ }}}
 " * sources               "{{{
 source ~/.vim/vimrc_source/hatena.vimrc
+source ~/.vim/vimrc_source/evervim.vimrc
 "source ~/.vim/vimrc_source/junkfile.vimrc
 " ------------------------ }}}
 
