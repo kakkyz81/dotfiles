@@ -48,6 +48,7 @@ set laststatus=2
 set modeline
 set modelines=5
 set clipboard=unnamedplus,unnamed
+set directory=R:\temp     " swapfileの作成場所
 set backupdir=D:\temp
 set undofile              " 再読込、vim終了後も継続するundo
 set undodir=D:\temp
@@ -82,7 +83,7 @@ else
   set statusline+=%t       " ファイル名のみ
 endif
 set statusline+=%=         " 左寄せ項目と右寄せ項目の区切り
-set statusline+=%{fugitive#statusline()}  " Gitのブランチ名を表示
+set statusline+=%{fugitive#statusline()}
 set statusline+=\ \        " 空白スペース2個
 set statusline+=%1l        " 何行目にカーソルがあるか
 set statusline+=/
