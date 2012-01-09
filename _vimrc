@@ -275,12 +275,16 @@ let vimshell_user_prompt    = 'getcwd()'
 vnoremap e y:CODSelected<CR>
 " ------------------------ }}}
 " * key mapping            {{{
-nmap ,r <Plug>(quickrun)
 map <C-w>t :tabn<CR>
 map <C-w>e :tabnew
 map <C-w>w :set wrap!<CR>
 map <ESC><ESC> :noh<CR>:cclose<CR>
 
+" ------------------------ }}}
+" * quickrun.vim          "{{{
+nmap ,r <Plug>(quickrun)
+let g:quickrun_config = {}
+let g:quickrun_config['*'] = {'runmode': "async:remote:vimproc", 'split': 'below'}
 " ------------------------ }}}
 " * sources               "{{{
 source ~/.vim/vimrc_source/hatena.vimrc
