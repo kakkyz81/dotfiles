@@ -34,6 +34,7 @@ Bundle 'Align'
 Bundle 'calendar.vim'
 Bundle 'grep.vim'
 Bundle 'cursoroverdictionary'
+Bundle 'restart.vim'
 
 filetype plugin indent on
 " ------------------------ }}}
