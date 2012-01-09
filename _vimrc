@@ -83,7 +83,7 @@ else
   set statusline+=%t       " ファイル名のみ
 endif
 set statusline+=%=         " 左寄せ項目と右寄せ項目の区切り
-set statusline+=%{fugitive#statusline()}
+set statusline+=%{fugitive#statusline()}  " Gitのブランチ名を表示
 set statusline+=\ \        " 空白スペース2個
 set statusline+=%1l        " 何行目にカーソルがあるか
 set statusline+=/
@@ -110,7 +110,7 @@ map <silent> <F12> :call BufferList()<CR>
 " ------------------------ }}}
 " * fugitive               {{{
 nmap ,gc :Gcommit<CR>
-nmap ,gl :Glog<CR>
+nmap ,gl :Glog<CR>:copen<CR>
 nmap ,gd :Gdiff<CR>
 nmap ,gs :Gstatus<CR>
 " ------------------------ }}}
@@ -174,8 +174,8 @@ let QFixHowm_OpenURIcmd        = '!start ' . $HOMEPATH . '\AppData\Local\Google\
 " ------------------------ }}}
 " * unite                  {{{
 "
-" 入力モードで開始する
-let g:unite_enable_start_insert=1
+" 入力モードで開始しない
+let g:unite_enable_start_insert=0
 " バッファ一覧
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 " ファイル一覧
