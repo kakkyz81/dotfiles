@@ -25,6 +25,7 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimshell'
 Bundle 'Shougo/vimproc'
+Bundle 'Shougo/vimfiler'
 Bundle 'fuenor/qfixhowm'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'kakkyz81/evervim'
@@ -287,6 +288,11 @@ nmap ,r <Plug>(quickrun)
 let g:quickrun_config = {}
 let g:quickrun_config['*'] = {'runmode': "async:remote:vimproc", 'split': 'below'}
 " ------------------------ }}}
+" * vimfiler
+let g:vimfiler_as_default_explorer = 1
+nmap <silent> <Space>f :VimFilerBufferDir<CR>
+" ------------------------ }}}
+
 " * sources               "{{{
 source ~/.vim/vimrc_source/hatena.vimrc
 source ~/.vim/vimrc_source/evervim.vimrc
