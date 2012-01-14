@@ -161,7 +161,7 @@ let QFixHowm_ReminderHolidayName   = '元日\|成人の日\|建国記念の日\|昭和の日\|憲
 " keymap
 nmap fd :<C-U>call qfixmemo#InsertDate('Date')<CR><Right>
 nmap fT :<C-U>call qfixmemo#InsertDate('Time')<CR><Right>
-map  fF <ESC><Insert># fihished todos
+map  fF <ESC><Insert># finished todos
 " insert action
 nmap fa fT+<Space>
 " もともと faにマッピングされていたもの(memo zenbu list)
