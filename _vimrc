@@ -28,6 +28,7 @@ Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimfiler'
 Bundle 'fuenor/qfixhowm'
 Bundle 'h1mesuke/unite-outline'
+Bundle 'h1mesuke/vim-alignta'
 Bundle 'kakkyz81/evervim'
 " from vim.org
 Bundle 'YankRing.vim'
