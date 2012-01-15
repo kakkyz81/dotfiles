@@ -191,7 +191,7 @@ nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
 " 常用セット
 nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
 " outline
-nnoremap <silent> ,uo :<C-u>Unite buffer outline<CR>
+nnoremap <silent> ,uo :<C-u>Unite outline<CR>
 " 全部乗せ
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file outline<CR>
 " ウィンドウを分割して開く
