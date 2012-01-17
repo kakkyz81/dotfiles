@@ -289,7 +289,7 @@ nmap ,r <Plug>(quickrun)
 let g:quickrun_config = {}
 let g:quickrun_config['*'] = {'runmode': "async:remote:vimproc", 'split': 'below'}
 " ------------------------ }}}
-" * vimfiler
+" * vimfiler {{{
 let g:vimfiler_as_default_explorer = 1
 nmap <silent> <Space>f :VimFilerBufferDir<CR>
 " ------------------------ }}}
