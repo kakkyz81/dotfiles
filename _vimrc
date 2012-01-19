@@ -291,12 +291,11 @@ let g:quickrun_config['*'] = {'runmode': "async:remote:vimproc", 'split': 'below
 " ------------------------ }}}
 " * vimfiler {{{
 let g:vimfiler_as_default_explorer = 1
-nmap <silent> <Space>f :VimFilerBufferDir<CR>
+nmap <silent> ,u<Space> :VimFilerBufferDir<CR>
 " ------------------------ }}}
-
 " * sources               "{{{
 source ~/.vim/vimrc_source/hatena.vimrc
 source ~/.vim/vimrc_source/evervim.vimrc
-"source ~/.vim/vimrc_source/junkfile.vimrc
+source ~/.vim/vimrc_source/junkfile.vimrc
 " ------------------------ }}}
 
