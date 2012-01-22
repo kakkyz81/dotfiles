@@ -30,6 +30,11 @@ Bundle 'fuenor/qfixhowm'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'h1mesuke/vim-alignta'
 Bundle 'kakkyz81/evervim'
+Bundle 'thinca/TweetVim'
+Bundle 'tyru/open-browser.vim'
+Bundle 'basyura/twibill.vim'
+Bundle 'basyura/bitly.vim'
+Bundle 'mattn/webapi-vim'
 " from vim.org
 Bundle 'YankRing.vim'
 Bundle 'bufferlist.vim'
@@ -192,6 +197,8 @@ nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
 nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
 " outline
 nnoremap <silent> ,uo :<C-u>Unite outline<CR>
+" twitter
+nnoremap <silent> ,ut :<C-u>Unite tweetvim<CR>
 " 全部乗せ
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file outline<CR>
 " ウィンドウを分割して開く
@@ -293,6 +300,11 @@ let g:quickrun_config['*'] = {'runmode': "async:remote:vimproc", 'split': 'below
 let g:vimfiler_as_default_explorer = 1
 nmap <silent> ,u<Space> :VimFilerBufferDir<CR>
 " ------------------------ }}}
+" * tweetvim {{{
+map ,tt <CR>:TweetVimSay<CR>
+" au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+" ------------------------ }}}
+
 " * sources               "{{{
 source ~/.vim/vimrc_source/hatena.vimrc
 source ~/.vim/vimrc_source/evervim.vimrc
