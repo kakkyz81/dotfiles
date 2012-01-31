@@ -43,6 +43,7 @@ Bundle 'calendar.vim'
 Bundle 'grep.vim'
 Bundle 'cursoroverdictionary'
 Bundle 'restart.vim'
+Bundle 'VimRepress'
 
 filetype plugin indent on
 " ------------------------ }}}
@@ -304,10 +305,7 @@ nmap <silent> ,u<Space> :VimFilerBufferDir<CR>
 map ,tt <CR>:TweetVimSay<CR>
 " au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 " ------------------------ }}}
-
 " * sources               "{{{
-source ~/.vim/vimrc_source/hatena.vimrc
-source ~/.vim/vimrc_source/evervim.vimrc
-source ~/.vim/vimrc_source/junkfile.vimrc
+source ~/.vim/vimrc_source/personal.vimrc
 " ------------------------ }}}
 
