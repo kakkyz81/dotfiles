@@ -295,7 +295,8 @@ map <ESC><ESC> :noh<CR>:cclose<CR>
 " * quickrun.vim          "{{{
 nmap ,r <Plug>(quickrun)
 let g:quickrun_config = {}
-let g:quickrun_config['*'] = {'runmode': "async:remote:vimproc", 'split': 'below'}
+let g:quickrun_config['*'] = { 'split': 'below'}
+let g:quickrun_config['python'] = {}
 " ------------------------ }}}
 " * vimfiler {{{
 let g:vimfiler_as_default_explorer = 1
