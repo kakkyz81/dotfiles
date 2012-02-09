@@ -35,6 +35,7 @@ Bundle 'tyru/open-browser.vim'
 Bundle 'basyura/twibill.vim'
 Bundle 'basyura/bitly.vim'
 Bundle 'mattn/webapi-vim'
+Bundle 'mattn/mkdpreview-vim'
 " from vim.org
 Bundle 'YankRing.vim'
 Bundle 'bufferlist.vim'
