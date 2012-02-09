@@ -44,6 +44,7 @@ Bundle 'grep.vim'
 Bundle 'cursoroverdictionary'
 Bundle 'restart.vim'
 Bundle 'VimRepress'
+Bundle 'project.tar.gz'
 
 filetype plugin indent on
 " ------------------------ }}}
