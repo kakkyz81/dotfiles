@@ -292,7 +292,8 @@ map <C-w>t :tabn<CR>
 map <C-w>e :tabnew
 map <C-w>w :set wrap!<CR>
 map <ESC><ESC> :noh<CR>:cclose<CR>
-
+" xml‚Ì®Œ` http://mattn.kaoriya.net/software/lang/python/20120209221728.htm
+map <Leader>x !python -m BeautifulSoup<CR>
 " ------------------------ }}}
 " * quickrun.vim          "{{{
 nmap ,r <Plug>(quickrun)
