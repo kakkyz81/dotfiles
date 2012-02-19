@@ -11,7 +11,8 @@ if has('multi_byte_ime')  "IME状態に応じたカーソル色を設定
 endif
 " カレントバッファを目立たせる
 hi StatusLine  guifg=lightcyan guibg=#006f40 gui=none    ctermfg=blue ctermbg=gray term=none cterm=none
-"
+" デフォルトを透過にする
+set transparency=220
 " <C-g>tで背景透過,<C-g>gで戻す
 map <C-g>t :set transparency=220<CR>
 map <C-g>g :set transparency=0<CR>
