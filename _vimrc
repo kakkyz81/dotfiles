@@ -6,6 +6,7 @@
 set nocompatible          " We're running Vim, not Vi!
 set autoread
 set visualbell            " no sound flash bell
+set grepprg=grep\ -nH
 " ------------------------ }}}
 " * vundle                "{{{
 filetype off
@@ -36,6 +37,8 @@ Bundle 'basyura/twibill.vim'
 Bundle 'basyura/bitly.vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/mkdpreview-vim'
+Bundle 'kakkyz81/vim-redmine'
+Bundle 'fs111/pydoc.vim'
 " from vim.org
 Bundle 'YankRing.vim'
 Bundle 'bufferlist.vim'
@@ -294,6 +297,9 @@ map <C-w>w :set wrap!<CR>
 map <ESC><ESC> :noh<CR>:cclose<CR>
 " xmlの整形 http://mattn.kaoriya.net/software/lang/python/20120209221728.htm
 map <Leader>x !python -m BeautifulSoup<CR>
+map <Leader>x !python -m BeautifulSoup<CR>
+" messagesをクリップボードに
+map <C-r>m :redir @*<CR>:silent messages<CR>:redir END<CR>
 " ------------------------ }}}
 " * quickrun.vim          "{{{
 nmap ,r <Plug>(quickrun)
