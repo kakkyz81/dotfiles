@@ -39,6 +39,8 @@ Bundle 'mattn/webapi-vim'
 Bundle 'mattn/mkdpreview-vim'
 Bundle 'kakkyz81/vim-redmine'
 Bundle 'fs111/pydoc.vim'
+Bundle 'nvie/vim-flake8'
+
 " from vim.org
 Bundle 'YankRing.vim'
 Bundle 'bufferlist.vim'
@@ -314,6 +316,9 @@ nmap <silent> ,u<Space> :VimFilerBufferDir<CR>
 " * tweetvim {{{
 map ,tt <CR>:TweetVimSay<CR>
 " au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+" ------------------------ }}}
+" * flake8 {{{
+let g:flake8_ignore='E501' " ignore line too long
 " ------------------------ }}}
 " * sources               "{{{
 source ~/.vim/vimrc_source/personal.vimrc
