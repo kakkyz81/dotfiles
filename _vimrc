@@ -318,7 +318,7 @@ map ,tt <CR>:TweetVimSay<CR>
 " au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 " ------------------------ }}}
 " * flake8 {{{
-let g:flake8_ignore='E501' " ignore line too long
+let g:flake8_ignore='E501,E221' " ignore line too long
 " ------------------------ }}}
 " * sources               "{{{
 source ~/.vim/vimrc_source/personal.vimrc
