@@ -202,7 +202,7 @@ nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 " 最近使用したファイル一覧
 nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
 " 常用セット
-nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
+nnoremap <silent> ,uu :<C-u>Unite buffer file_mru bookmark<CR>
 " outline
 nnoremap <silent> ,uo :<C-u>Unite outline<CR>
 " twitter
@@ -306,8 +306,9 @@ map <C-r>m :redir @*<CR>:silent messages<CR>:redir END<CR>
 " * quickrun.vim          "{{{
 nmap ,r <Plug>(quickrun)
 let g:quickrun_config = {}
-let g:quickrun_config['*'] = { 'split': 'below'}
-let g:quickrun_config['python'] = {}
+let g:quickrun_config['*'] = { 'split': 'below' , 
+                             \ 'runner': 'vimproc' }
+let g:quickrun_config['python'] = { }
 " ------------------------ }}}
 " * vimfiler {{{
 let g:vimfiler_as_default_explorer = 1
