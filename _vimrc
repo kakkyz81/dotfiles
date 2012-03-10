@@ -304,11 +304,24 @@ map <Leader>x !python -m BeautifulSoup<CR>
 map <C-r>m :redir @*<CR>:silent messages<CR>:redir END<CR>
 " ------------------------ }}}
 " * quickrun.vim          "{{{
+function! s:clear_quickrunbuffer()
+    let winnr = 1
+    while winnr <= winnr('$')
+        if getbufvar(winbufnr(winnr), '&filetype') ==# 'quickrun'
+            execute winnr 'wincmd w'
+            %delete _
+            break
+        endif
+        let winnr += 1
+    endwhile
+endfunction
+command! -nargs=0 ClearQuickrun call s:clear_quickrunbuffer()
 nmap ,r <Plug>(quickrun)
+nmap ,rc :ClearQuickrun<CR>
 let g:quickrun_config = {}
 let g:quickrun_config['*'] = { 'split': 'below' , 
                              \ 'runner': 'vimproc' }
-let g:quickrun_config['python'] = { }
+let g:quickrun_config['python'] = { 'outputter/buffer/append': 1 }
 " ------------------------ }}}
 " * vimfiler {{{
 let g:vimfiler_as_default_explorer = 1
