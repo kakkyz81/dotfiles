@@ -17,6 +17,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " from github
+Bundle 'ujihisa/vital.vim'
 Bundle 'motemen/hatena-vim.git'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
