@@ -70,6 +70,7 @@ set backupdir=D:\temp
 set undofile              " çƒì«çûÅAvimèIóπå„Ç‡åpë±Ç∑ÇÈundo
 set undodir=D:\temp
 set nopaste               " for neocomplcache
+autocmd BufWritePre *.py :%S/\s*$//g
 syntax on                 " Enable syntax highlighting
 " ------------------------ }}}
 " * tab                   {{{
@@ -322,7 +323,7 @@ nmap ,rc :ClearQuickrun<CR>
 let g:quickrun_config = {}
 let g:quickrun_config['*'] = { 'split': 'below' , 
                              \ 'runner': 'vimproc' }
-let g:quickrun_config['python'] = { 'outputter/buffer/append': 1 }
+let g:quickrun_config['python'] = {} "{ 'outputter/buffer/append': 1 }
 " ------------------------ }}}
 " * vimfiler {{{
 let g:vimfiler_as_default_explorer = 1
@@ -333,7 +334,7 @@ map ,tt <CR>:TweetVimSay<CR>
 " au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 " ------------------------ }}}
 " * flake8 {{{
-let g:flake8_ignore='E501,E221' " ignore line too long
+let g:flake8_ignore='E501,E221,E701,E203' " ignore line too long & multiple statements on one line
 " ------------------------ }}}
 " * sources               "{{{
 source ~/.vim/vimrc_source/personal.vimrc
