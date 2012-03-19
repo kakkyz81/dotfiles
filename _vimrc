@@ -336,6 +336,9 @@ map ,tt <CR>:TweetVimSay<CR>
 " * flake8 {{{
 let g:flake8_ignore='E501,E221,E701,E203' " ignore line too long & multiple statements on one line
 " ------------------------ }}}
+" * restart.vim {{{
+command! RestartWithSession let g:restart_sessionoptions = 'blank,curdir,folds,help,localoptions,tabpages' | Restart
+" ------------------------ }}}
 " * sources               "{{{
 source ~/.vim/vimrc_source/personal.vimrc
 " ------------------------ }}}
