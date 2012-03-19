@@ -70,7 +70,7 @@ set backupdir=D:\temp
 set undofile              " çƒì«çûÅAvimèIóπå„Ç‡åpë±Ç∑ÇÈundo
 set undodir=D:\temp
 set nopaste               " for neocomplcache
-autocmd BufWritePre *.py :%S/\s*$//g
+"autocmd BufWritePre *.py :%S/\s+$//ge  
 syntax on                 " Enable syntax highlighting
 " ------------------------ }}}
 " * tab                   {{{
