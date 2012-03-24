@@ -16,3 +16,8 @@ set transparency=220
 " <C-g>t‚Å”wŒi“§‰ß,<C-g>g‚Å–ß‚·
 map <C-g>t :set transparency=220<CR>
 map <C-g>g :set transparency=0<CR>
+" ƒƒjƒ…[‚ğ•\¦‚µ‚È‚¢
+set guioptions-=m
+set guioptions-=T
+
+highlight CursorLine term=reverse cterm=reverse guibg=green

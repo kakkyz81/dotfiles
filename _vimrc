@@ -342,7 +342,6 @@ command! RestartWithSession let g:restart_sessionoptions = 'blank,curdir,folds,h
 " * sources               "{{{
 source ~/.vim/vimrc_source/personal.vimrc
 " ------------------------ }}}
-
 " * cursorline            "{{{
 " via.http://d.hatena.ne.jp/thinca/20090530/1243615055
 augroup vimrc-auto-cursorline
@@ -374,6 +373,5 @@ augroup vimrc-auto-cursorline
     endif
   endfunction
 augroup END
-highlight CursorLine term=reverse cterm=reverse guibg=green
 " ------------------------ }}}
 
