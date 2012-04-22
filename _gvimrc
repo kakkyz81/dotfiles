@@ -20,4 +20,4 @@ map <C-g>g :set transparency=0<CR>
 set guioptions-=m
 set guioptions-=T
 
-highlight CursorLine term=reverse cterm=reverse guibg=green
+" highlight CursorLine term=reverse cterm=reverse guibg=green
