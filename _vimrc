@@ -373,3 +373,6 @@ source ~/.vim/vimrc_source/personal.vimrc
 "     endfunction
 "   augroup END
 " ------------------------ }}}
+" * project.vim {{{
+let g:proj_flags="imstv"
+" ------------------------ }}}
