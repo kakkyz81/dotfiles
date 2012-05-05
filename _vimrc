@@ -193,14 +193,15 @@ let QFixHowm_OpenURIcmd        = '!start ' . $HOMEPATH . '\AppData\Local\Google\
 " ------------------------ }}}
 " * unite                  {{{
 "
+let g:unite_source_history_yank_enable=1
 " 入力モードで開始しない
 let g:unite_enable_start_insert=0
 " バッファ一覧
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 " ファイル一覧
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-" レジスタ一覧
-nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+" レジスタ & yankhistory一覧
+nnoremap <silent> ,ur :<C-u>Unite history/yank -buffer-name=register register<CR>
 " 最近使用したファイル一覧
 nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
 " 常用セット
