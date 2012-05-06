@@ -378,9 +378,10 @@ source ~/.vim/vimrc_source/personal.vimrc
 let g:proj_flags="imstv"
 " ------------------------ }}}
 " * evervim {{{
-nnoremap <silent> ,en :<C-u>EvervimNotebookList<CR>
+nnoremap <silent> ,el :<C-u>EvervimNotebookList<CR>
 nnoremap <silent> ,et :<C-u>EvervimListTags<CR>
-nnoremap <silent> ,ec :<C-u>EvervimCreateNote<CR>
-nnoremap <silent> ,eb :<C-u>EvervimNoteOpenBrowser<CR>
+nnoremap <silent> ,en :<C-u>EvervimCreateNote<CR>
+nnoremap <silent> ,eb :<C-u>EvervimOpenBrowser<CR>
+nnoremap <silent> ,ec :<C-u>EvervimOpenClient<CR>
 nnoremap ,es :<C-u>EvervimSearchByQuery<SPACE>
 " ------------------------ }}}
