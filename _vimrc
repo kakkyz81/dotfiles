@@ -17,7 +17,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " from github
-Bundle 'ujihisa/vital.vim'
+Bundle 'vim-jp/vital.vim'
 Bundle 'motemen/hatena-vim.git'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
@@ -41,6 +41,12 @@ Bundle 'mattn/mkdpreview-vim'
 Bundle 'kakkyz81/vim-redmine'
 Bundle 'fs111/pydoc.vim'
 Bundle 'nvie/vim-flake8'
+Bundle 'MarcWeber/vim-addon-sbt'
+Bundle 'MarcWeber/vim-addon-mw-utils'
+Bundle 'MarcWeber/vim-addon-actions'
+Bundle 'derekwyatt/vim-scala'
+Bundle 'basyura/unite-yarm'
+Bundle 'derekwyatt/vim-scala'
 
 " from vim.org
 Bundle 'YankRing.vim'
@@ -52,11 +58,12 @@ Bundle 'cursoroverdictionary'
 Bundle 'restart.vim'
 Bundle 'VimRepress'
 Bundle 'project.tar.gz'
+Bundle 'BufOnly.vim'
 
 filetype plugin indent on
 " ------------------------ }}}
 " * edit                  "{{{
-set nu                    
+set nu
 set ruler
 set nowrap
 set showcmd               "入力中のコマンドをステータスに表示
@@ -70,8 +77,18 @@ set backupdir=D:\temp
 set undofile              " 再読込、vim終了後も継続するundo
 set undodir=D:\temp
 set nopaste               " for neocomplcache
-"autocmd BufWritePre *.py :%S/\s+$//ge  
+"autocmd BufWritePre *.py :%S/\s+$//ge
 syntax on                 " Enable syntax highlighting
+" 末尾空白の除去
+function! s:remove_dust()
+    let cursor = getpos(".")
+    %s/\s\+$//ge
+    %s/\t/  /ge
+    call setpos(".", cursor)
+    unlet cursor
+endfunction
+autocmd BufWritePre * call <SID>remove_dust()
+
 " ------------------------ }}}
 " * tab                   {{{
 set expandtab
@@ -80,9 +97,11 @@ set shiftwidth=4          "自動で挿入されるタブの幅
 set softtabstop=4         "タブの代わりに空白をいれるときの空白数。0だと無効。
 " ------------------------ }}}
 " * search                "{{{
-set hlsearch 
+set hlsearch
 set ignorecase
 set incsearch
+" to doの一覧をquickfixに表示する via.http://d.hatena.ne.jp/akihito_s/20110727
+noremap <Leader>t :noautocmd vimgrep /TODO/j **/*.xml **/*.scala **/*.java <CR>:cw<CR>
 " ------------------------ }}}
 " * statusline            "{{{
 " via http://d.hatena.ne.jp/ruedap/touch/20110712/vim_statusline_git_branch_name
@@ -95,7 +114,7 @@ set statusline+=%w         " %w プレビューウィンドウフラグ
 set statusline+=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " fencとffを表示
 set statusline+=%y         " バッファ内のファイルのタイプ
 set statusline+=\          " 空白スペース
-if winwidth(0) >= 130      
+if winwidth(0) >= 130
   set statusline+=%F       " バッファ内のファイルのフルパス
 else
   set statusline+=%t       " ファイル名のみ
@@ -199,13 +218,13 @@ let g:unite_enable_start_insert=0
 " バッファ一覧
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 " ファイル一覧
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file bookmark<CR>
 " レジスタ & yankhistory一覧
-nnoremap <silent> ,ur :<C-u>Unite history/yank -buffer-name=register register<CR>
+nnoremap <silent> ,uy :<C-u>Unite history/yank -buffer-name=register register<CR>
 " 最近使用したファイル一覧
 nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
 " 常用セット
-nnoremap <silent> ,uu :<C-u>Unite buffer file_mru bookmark<CR>
+nnoremap <silent> ,uu :<C-u>Unite buffer file_mru bookmark file<CR>
 " outline
 nnoremap <silent> ,uo :<C-u>Unite outline<CR>
 " twitter
@@ -231,7 +250,7 @@ let g:neocomplcache_enable_underbar_completion   = 1 " _区切りの補完 有効化
 let g:neocomplcache_min_syntax_length            = 3 " シンタックスをキャッシュするときの最小文字長
 let g:neocomplcache_temporary_dir                = 'R:\Temp\.neocon'
 " let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*' " ku.vimやfizzyfinderなど、相性の悪いplugin用 不要
-" Define dictionary. 
+" Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell/command-history',
@@ -322,7 +341,7 @@ command! -nargs=0 ClearQuickrun call s:clear_quickrunbuffer()
 nmap ,r <Plug>(quickrun)
 nmap ,rc :ClearQuickrun<CR>
 let g:quickrun_config = {}
-let g:quickrun_config['*'] = { 'split': 'below' , 
+let g:quickrun_config['*'] = { 'split': 'below' ,
                              \ 'runner': 'vimproc' }
 let g:quickrun_config['python'] = {} "{ 'outputter/buffer/append': 1 }
 " ------------------------ }}}
@@ -379,9 +398,15 @@ let g:proj_flags="imstv"
 " ------------------------ }}}
 " * evervim {{{
 nnoremap <silent> ,el :<C-u>EvervimNotebookList<CR>
-nnoremap <silent> ,et :<C-u>EvervimListTags<CR>
+nnoremap <silent> ,eT :<C-u>EvervimListTags<CR>
 nnoremap <silent> ,en :<C-u>EvervimCreateNote<CR>
 nnoremap <silent> ,eb :<C-u>EvervimOpenBrowser<CR>
 nnoremap <silent> ,ec :<C-u>EvervimOpenClient<CR>
 nnoremap ,es :<C-u>EvervimSearchByQuery<SPACE>
+nnoremap <silent> ,et :<C-u>EvervimSearchByQuery<SPACE>tag:todo -tag:done<CR>
+let g:evervim_splitoption=''
+" ------------------------ }}}
+" * vim-redmine {{{
+nnoremap ,ra :<C-u>RedmineAddTicket<Space>
+nnoremap ,rd :<C-u>RedmineAddTicketWithDiscription<Space>
 " ------------------------ }}}
