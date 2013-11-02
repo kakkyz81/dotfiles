@@ -80,8 +80,8 @@ set laststatus=2
 set modeline
 set modelines=5
 set clipboard=unnamedplus,unnamed
-if !isdirectory($HOME/temp)
-    call mkdir($HOME/temp)
+if !isdirectory($HOME . "/temp")
+    call mkdir($HOME. "/temp")
 endif
 set directory=$HOME/temp     " swapfileの作成場所
 set backupdir=$HOME/temp
