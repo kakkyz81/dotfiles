@@ -440,5 +440,5 @@ nnoremap ,rd :<C-u>RedmineAddTicketWithDiscription<Space>
 nnoremap // :<C-u>Migemo<CR>
 " ------------------------ }}}
 " * sources               "{{{
-source ~/.vim/vimrc_source/personal.vimrc
+source ~/.vim//personal.vimrc
 " ------------------------ }}}
