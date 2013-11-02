@@ -80,7 +80,11 @@ set laststatus=2
 set modeline
 set modelines=5
 set clipboard=unnamedplus,unnamed
-set directory=$HOME/temp     " swapfileの作成場所
+if !isdirectory($HOME/temp)
+    call mkdir($HOME/temp)
+endif
+set directory=$home/temp     " swapfileの作成場所
+set directory=$home/temp     " swapfileの作成場所
 set backupdir=$HOME/temp
 set undofile              " 再読込、vim終了後も継続するundo
 set undodir=$HOME/temp
