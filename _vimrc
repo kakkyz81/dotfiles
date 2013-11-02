@@ -83,8 +83,7 @@ set clipboard=unnamedplus,unnamed
 if !isdirectory($HOME/temp)
     call mkdir($HOME/temp)
 endif
-set directory=$home/temp     " swapfileの作成場所
-set directory=$home/temp     " swapfileの作成場所
+set directory=$HOME/temp     " swapfileの作成場所
 set backupdir=$HOME/temp
 set undofile              " 再読込、vim終了後も継続するundo
 set undodir=$HOME/temp
