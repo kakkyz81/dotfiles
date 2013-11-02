@@ -2,21 +2,27 @@
 " -------------------------------------------------------------------------
 "  _gvimrc main
 " -------------------------------------------------------------------------
-colorscheme darkblue " ƒJƒ‰[İ’è:
-set guifont=MeiryoKe_Console:h9:cSHIFTJIS
+colorscheme darkblue " ã‚«ãƒ©ãƒ¼è¨­å®š:
 set linespace=1
-if has('multi_byte_ime')  "IMEó‘Ô‚É‰‚¶‚½ƒJ[ƒ\ƒ‹F‚ğİ’è
+if has('multi_byte_ime')  "IMEçŠ¶æ…‹ã«å¿œã˜ãŸã‚«ãƒ¼ã‚½ãƒ«è‰²ã‚’è¨­å®š
     highlight Cursor   guifg=#000d18 guibg=#8faf9f gui=bold
-    highlight CursorIM guifg=#ff7f50 guibg=#ff4500 gui=bold "Ô‚Á‚Û‚¢
+    highlight CursorIM guifg=#ff7f50 guibg=#ff4500 gui=bold "èµ¤ã£ã½ã„
 endif
-" ƒJƒŒƒ“ƒgƒoƒbƒtƒ@‚ğ–Ú—§‚½‚¹‚é
+" ã‚«ãƒ¬ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã‚’ç›®ç«‹ãŸã›ã‚‹
 hi StatusLine  guifg=lightcyan guibg=#006f40 gui=none    ctermfg=blue ctermbg=gray term=none cterm=none
-" ƒfƒtƒHƒ‹ƒg‚ğ“§‰ß‚É‚·‚é
-set transparency=220
-" <C-g>t‚Å”wŒi“§‰ß,<C-g>g‚Å–ß‚·
+" ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚’é€éã«ã™ã‚‹
+if has('win32') || has('win64')
+    set transparency=220
+    set guifont=MeiryoKe_Console:h9:cSHIFTJIS
+endif
+if has('unix')
+    set guifont=TakaoGothic\ 14
+endif
+" <C-g>tã§èƒŒæ™¯é€é,<C-g>gã§æˆ»ã™
 map <C-g>t :set transparency=220<CR>
 map <C-g>g :set transparency=0<CR>
-" ƒƒjƒ…[‚ğ•\¦‚µ‚È‚¢
+set transparency=220
+" ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’è¡¨ç¤ºã—ãªã„
 set guioptions-=m
 set guioptions-=T
 

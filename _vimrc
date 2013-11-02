@@ -6,59 +6,67 @@
 set nocompatible          " We're running Vim, not Vi!
 set autoread
 set visualbell            " no sound flash bell
-set grepprg=grep\ -nH
+"set grepprg=grep\ -nH
 " ------------------------ }}}
 " * vundle                "{{{
+"
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+if has('vim_starting')
+    " for windows -> mklink /D ~\.vim ~\dropbox\apps\vim\.vim
+   set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
 
-" •K{
-Bundle 'gmarik/vundle'
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundle 'Shougo/neobundle.vim'
+
+" Recommended to install
+" After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
+NeoBundle 'Shougo/vimproc'
 
 " from github
-Bundle 'vim-jp/vital.vim'
-Bundle 'motemen/hatena-vim.git'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'othree/eregex.vim'
-Bundle 'thinca/vim-quickrun'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimshell'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimfiler'
-Bundle 'fuenor/qfixhowm'
-Bundle 'h1mesuke/unite-outline'
-Bundle 'h1mesuke/vim-alignta'
-Bundle 'kakkyz81/evervim'
-Bundle 'thinca/TweetVim'
-Bundle 'tyru/open-browser.vim'
-Bundle 'basyura/twibill.vim'
-Bundle 'basyura/bitly.vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/mkdpreview-vim'
-Bundle 'kakkyz81/vim-redmine'
-Bundle 'fs111/pydoc.vim'
-Bundle 'nvie/vim-flake8'
-Bundle 'MarcWeber/vim-addon-sbt'
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'MarcWeber/vim-addon-actions'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'basyura/unite-yarm'
-Bundle 'derekwyatt/vim-scala'
-
+NeoBundle 'vim-jp/vital.vim'
+NeoBundle 'motemen/hatena-vim.git'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'othree/eregex.vim'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'fuenor/qfixhowm'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'h1mesuke/vim-alignta'
+NeoBundle 'basyura/TweetVim'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'kakkyz81/evervim'
+NeoBundle 'basyura/twibill.vim'
+NeoBundle 'basyura/bitly.vim'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'mattn/mkdpreview-vim'
+NeoBundle 'kakkyz81/vim-redmine'
+NeoBundle 'fs111/pydoc.vim'
+NeoBundle 'nvie/vim-flake8'
+NeoBundle 'MarcWeber/vim-addon-sbt'
+NeoBundle 'MarcWeber/vim-addon-mw-utils'
+NeoBundle 'MarcWeber/vim-addon-actions'
+NeoBundle 'basyura/unite-yarm'
+" NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'nelstrom/vim-markdown-folding'
+NeoBundleLazy 'yuratomo/w3m.vim'
 " from vim.org
-Bundle 'YankRing.vim'
-Bundle 'bufferlist.vim'
-Bundle 'Align'
-Bundle 'calendar.vim'
-Bundle 'grep.vim'
-Bundle 'cursoroverdictionary'
-Bundle 'restart.vim'
-Bundle 'VimRepress'
-Bundle 'project.tar.gz'
-Bundle 'BufOnly.vim'
+NeoBundle 'YankRing.vim'
+NeoBundle 'bufferlist.vim'
+NeoBundle 'Align'
+NeoBundle 'calendar.vim'
+NeoBundle 'grep.vim'
+NeoBundle 'cursoroverdictionary'
+NeoBundle 'restart.vim'
+NeoBundle 'VimRepress'
+NeoBundle 'project.tar.gz'
+NeoBundle 'BufOnly.vim'
 
 filetype plugin indent on
 " ------------------------ }}}
@@ -66,70 +74,77 @@ filetype plugin indent on
 set nu
 set ruler
 set nowrap
-set showcmd               "“ü—Í’†‚ÌƒRƒ}ƒ“ƒh‚ğƒXƒe[ƒ^ƒX‚É•\¦
-set scrolloff=5           "ƒXƒNƒ[ƒ‹‚·‚é‚Æ‚«ã‰º‚É—]—T‚ğŠm•Û‚·‚é
+set showcmd               "å…¥åŠ›ä¸­ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã«è¡¨ç¤º
+set scrolloff=5           "ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ã™ã‚‹ã¨ãä¸Šä¸‹ã«ä½™è£•ã‚’ç¢ºä¿ã™ã‚‹
 set laststatus=2
 set modeline
 set modelines=5
 set clipboard=unnamedplus,unnamed
-set directory=R:\temp     " swapfile‚Ìì¬êŠ
-set backupdir=D:\temp
-set undofile              " Ä“ÇAvimI—¹Œã‚àŒp‘±‚·‚éundo
-set undodir=D:\temp
+set directory=$HOME/temp     " swapfileã®ä½œæˆå ´æ‰€
+set backupdir=$HOME/temp
+set undofile              " å†èª­è¾¼ã€vimçµ‚äº†å¾Œã‚‚ç¶™ç¶šã™ã‚‹undo
+set undodir=$HOME/temp
 set nopaste               " for neocomplcache
 "autocmd BufWritePre *.py :%S/\s+$//ge
 syntax on                 " Enable syntax highlighting
-" ––”ö‹ó”’‚Ìœ‹
+" æœ«å°¾ç©ºç™½ã®é™¤å»
 function! s:remove_dust()
     let cursor = getpos(".")
     %s/\s\+$//ge
-    %s/\t/  /ge
+"   %s/\t/  /ge
     call setpos(".", cursor)
     unlet cursor
 endfunction
 autocmd BufWritePre * call <SID>remove_dust()
-
+" Messagesã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«
+"  via. http://d.hatena.ne.jp/tyru/20110624/copy_messages_to_clipboard
+command! MessCopy call s:messcopy()
+function! s:messcopy()
+    redir @+>
+    silent messages
+    redir END
+    " Copy to selection too.
+    call setreg('*', getreg('+', 1), getregtype('+'))
+endfunction
 " ------------------------ }}}
 " * tab                   {{{
 set expandtab
-set tabstop=4             "Tab•¶š‚ğ‰æ–Êã‚ÌŒ©‚½–Ú‚Å‰½•¶š•‚É‚·‚é‚©İ’è
-set shiftwidth=4          "©“®‚Å‘}“ü‚³‚ê‚éƒ^ƒu‚Ì•
-set softtabstop=4         "ƒ^ƒu‚Ì‘ã‚í‚è‚É‹ó”’‚ğ‚¢‚ê‚é‚Æ‚«‚Ì‹ó”’”B0‚¾‚Æ–³ŒøB
+set tabstop=4             "Tabæ–‡å­—ã‚’ç”»é¢ä¸Šã®è¦‹ãŸç›®ã§ä½•æ–‡å­—å¹…ã«ã™ã‚‹ã‹è¨­å®š
+set shiftwidth=4          "è‡ªå‹•ã§æŒ¿å…¥ã•ã‚Œã‚‹ã‚¿ãƒ–ã®å¹…
+set softtabstop=4         "ã‚¿ãƒ–ã®ä»£ã‚ã‚Šã«ç©ºç™½ã‚’ã„ã‚Œã‚‹ã¨ãã®ç©ºç™½æ•°ã€‚0ã ã¨ç„¡åŠ¹ã€‚
 " ------------------------ }}}
 " * search                "{{{
 set hlsearch
 set ignorecase
 set incsearch
-" to do‚Ìˆê——‚ğquickfix‚É•\¦‚·‚é via.http://d.hatena.ne.jp/akihito_s/20110727
-noremap <Leader>t :noautocmd vimgrep /TODO/j **/*.xml **/*.scala **/*.java <CR>:cw<CR>
 " ------------------------ }}}
 " * statusline            "{{{
 " via http://d.hatena.ne.jp/ruedap/touch/20110712/vim_statusline_git_branch_name
-set statusline=%<          " s‚ª’·‚·‚¬‚é‚Æ‚«‚ÉØ‚è‹l‚ß‚éˆÊ’u
-set statusline+=[%n]       " ƒoƒbƒtƒ@”Ô†
-set statusline+=%m         " %m C³ƒtƒ‰ƒO
-set statusline+=%r         " %r “Ç‚İ‚İê—pƒtƒ‰ƒO
-set statusline+=%h         " %h ƒwƒ‹ƒvƒoƒbƒtƒ@ƒtƒ‰ƒO
-set statusline+=%w         " %w ƒvƒŒƒrƒ…[ƒEƒBƒ“ƒhƒEƒtƒ‰ƒO
-set statusline+=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " fenc‚Æff‚ğ•\¦
-set statusline+=%y         " ƒoƒbƒtƒ@“à‚Ìƒtƒ@ƒCƒ‹‚Ìƒ^ƒCƒv
-set statusline+=\          " ‹ó”’ƒXƒy[ƒX
+set statusline=%<          " è¡ŒãŒé•·ã™ãã‚‹ã¨ãã«åˆ‡ã‚Šè©°ã‚ã‚‹ä½ç½®
+set statusline+=[%n]       " ãƒãƒƒãƒ•ã‚¡ç•ªå·
+set statusline+=%m         " %m ä¿®æ­£ãƒ•ãƒ©ã‚°
+set statusline+=%r         " %r èª­ã¿è¾¼ã¿å°‚ç”¨ãƒ•ãƒ©ã‚°
+set statusline+=%h         " %h ãƒ˜ãƒ«ãƒ—ãƒãƒƒãƒ•ã‚¡ãƒ•ãƒ©ã‚°
+set statusline+=%w         " %w ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ•ãƒ©ã‚°
+set statusline+=%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}  " fencã¨ffã‚’è¡¨ç¤º
+set statusline+=%y         " ãƒãƒƒãƒ•ã‚¡å†…ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¿ã‚¤ãƒ—
+set statusline+=\          " ç©ºç™½ã‚¹ãƒšãƒ¼ã‚¹
 if winwidth(0) >= 130
-  set statusline+=%F       " ƒoƒbƒtƒ@“à‚Ìƒtƒ@ƒCƒ‹‚Ìƒtƒ‹ƒpƒX
+  set statusline+=%F       " ãƒãƒƒãƒ•ã‚¡å†…ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ãƒ«ãƒ‘ã‚¹
 else
-  set statusline+=%t       " ƒtƒ@ƒCƒ‹–¼‚Ì‚İ
+  set statusline+=%t       " ãƒ•ã‚¡ã‚¤ãƒ«åã®ã¿
 endif
-set statusline+=%=         " ¶Šñ‚¹€–Ú‚Æ‰EŠñ‚¹€–Ú‚Ì‹æØ‚è
-set statusline+=%{fugitive#statusline()}  " Git‚Ìƒuƒ‰ƒ“ƒ`–¼‚ğ•\¦
-set statusline+=\ \        " ‹ó”’ƒXƒy[ƒX2ŒÂ
-set statusline+=%1l        " ‰½s–Ú‚ÉƒJ[ƒ\ƒ‹‚ª‚ ‚é‚©
+set statusline+=%=         " å·¦å¯„ã›é …ç›®ã¨å³å¯„ã›é …ç›®ã®åŒºåˆ‡ã‚Š
+set statusline+=%{fugitive#statusline()}  " Gitã®ãƒ–ãƒ©ãƒ³ãƒåã‚’è¡¨ç¤º
+set statusline+=\ \        " ç©ºç™½ã‚¹ãƒšãƒ¼ã‚¹2å€‹
+set statusline+=%1l        " ä½•è¡Œç›®ã«ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã‚‹ã‹
 set statusline+=/
-set statusline+=%L         " ƒoƒbƒtƒ@“à‚Ì‘s”
+set statusline+=%L         " ãƒãƒƒãƒ•ã‚¡å†…ã®ç·è¡Œæ•°
 set statusline+=,
-set statusline+=%c         " ‰½—ñ–Ú‚ÉƒJ[ƒ\ƒ‹‚ª‚ ‚é‚©
-set statusline+=%V         " ‰æ–Êã‚Ì‰½—ñ–Ú‚ÉƒJ[ƒ\ƒ‹‚ª‚ ‚é‚©
-set statusline+=\ \        " ‹ó”’ƒXƒy[ƒX2ŒÂ
-set statusline+=%P         " ƒtƒ@ƒCƒ‹“à‚Ì‰½“‚ÌˆÊ’u‚É‚ ‚é‚©
+set statusline+=%c         " ä½•åˆ—ç›®ã«ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã‚‹ã‹
+set statusline+=%V         " ç”»é¢ä¸Šã®ä½•åˆ—ç›®ã«ã‚«ãƒ¼ã‚½ãƒ«ãŒã‚ã‚‹ã‹
+set statusline+=\ \        " ç©ºç™½ã‚¹ãƒšãƒ¼ã‚¹2å€‹
+set statusline+=%P         " ãƒ•ã‚¡ã‚¤ãƒ«å†…ã®ä½•ï¼…ã®ä½ç½®ã«ã‚ã‚‹ã‹
 " ------------------------ }}}
 " * function key mapping   {{{
 map <F1> :lcd %:p:h<CR>
@@ -152,104 +167,109 @@ nmap ,gd :Gdiff<CR>
 nmap ,gs :Gstatus<CR>
 " ------------------------ }}}
 " * QFixHowm               {{{
-let howm_dir              = '~/.vim_junk/howm'
+let howm_dir              = '~/Dropbox/personal/howm'
 let howm_fileencoding     = 'utf-8'
 let howm_fileformat       = 'dos'
-" ƒfƒtƒHƒ‹ƒg‚ğMarkdownŒ`®‚É
+" ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚’Markdownå½¢å¼ã«
 let QFixHowm_HowmMode     = 0
 let QFixHowm_Title        = '#'
 let suffix                = 'mkd'
 let QFixHowm_UserFileType = 'markdown'
 let QFixHowm_UserFileExt  = suffix
 let howm_filename         = '%Y/%m/%Y-%m-%d-%H%M%S.'.suffix
-let QFixHowm_DiaryFile    = 'diary/%Y/%Y-%m-%d.mkd'          " “ú‹L‚Í diaryƒfƒBƒŒƒNƒgƒŠ‚Éì¬
-let qfixmemo_mapleader    = 'f'                              " g, ‚Ì‘ã‚í‚è
-"let qfixmemo_folding      = 1                               " ƒtƒH[ƒ‹ƒfƒBƒ“ƒO
+let QFixHowm_DiaryFile    = 'diary/%Y/%Y-%m-%d.mkd'          " æ—¥è¨˜ã¯ diaryãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«ä½œæˆ
+let qfixmemo_mapleader    = ',f'                              " g, ã®ä»£ã‚ã‚Š
+let qfixmemo_folding      = 1                               " ãƒ•ã‚©ãƒ¼ãƒ«ãƒ‡ã‚£ãƒ³ã‚°
+function! QFixMemoSetFolding()
+    setlocal nofoldenable
+    setlocal foldmethod=expr
+"    setlocal foldexpr=getline(v:lnum)=~qfixmemo_folding_pattern?'>1':'1'
+endfunction
 "let qfixmemo_folding_pattern = '^#[^#]'                     "
-"let howm_filename         = '%Y/%m/%Y-%m-%d-000000.'.suffix "ˆê“úˆêƒtƒ@ƒCƒ‹‚Åg—p‚·‚é
+"let howm_filename         = '%Y/%m/%Y-%m-%d-000000.'.suffix "ä¸€æ—¥ä¸€ãƒ•ã‚¡ã‚¤ãƒ«ã§ä½¿ç”¨ã™ã‚‹æ™‚
 let QFixHowm_Template = [
  \"%TITLE% %TAG%",
  \""
 \]
-"ƒNƒCƒbƒNƒƒ‚ƒtƒ@ƒCƒ‹–¼İ’è
-"ƒfƒtƒHƒ‹ƒg‚ÆfU‚Å‚Í’Êí‚ÌƒNƒCƒbƒNƒƒ‚A
-"1fu‚ÅƒL[ƒ{[ƒhƒVƒ‡[ƒgƒJƒbƒg‚ğW‚ß‚½ƒƒ‚
+"ã‚¯ã‚¤ãƒƒã‚¯ãƒ¡ãƒ¢ãƒ•ã‚¡ã‚¤ãƒ«åè¨­å®š
+"ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¨fUã§ã¯é€šå¸¸ã®ã‚¯ã‚¤ãƒƒã‚¯ãƒ¡ãƒ¢ã€
+"1fuã§ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚’é›†ã‚ãŸãƒ¡ãƒ¢
 let QFixHowm_QuickMemoFile  = "Qmem-00-0000-00-00-000000.mkd"
 let QFixHowm_QuickMemoFile1 = "KeyboardShortcuts-0000000.mkd"
 
-" ‚»‚Ì‘¼
-"let mygrepprg                      = 'grep'    " w’è‚·‚é‚Æ‚¤‚Ü‚­“®‚©‚È‚¢
-let QFixHowm_ListReminder_ScheExt  = '[-@!]'    " fy‚Å•\¦ ƒŠƒ}ƒCƒ“ƒ_A—\’èA’÷Ø
-let QFixHowm_ListReminder_TodoExt  = '[-@+!~.]' " ft‚Å‘S•”
-let QFixHowm_ShowScheduleTodo      = 10           " ft fy f, ‚Å‚Ì•\¦Œ”
+" ãã®ä»–
+"let mygrepprg                      = 'grep'    " æŒ‡å®šã™ã‚‹ã¨ã†ã¾ãå‹•ã‹ãªã„
+let QFixHowm_ListReminder_ScheExt  = '[-@!]'    " fyã§è¡¨ç¤º ãƒªãƒã‚¤ãƒ³ãƒ€ã€äºˆå®šã€ç· åˆ‡
+let QFixHowm_ListReminder_TodoExt  = '[-@+!~.]' " ftã§å…¨éƒ¨
+let QFixHowm_ShowScheduleTodo      = 10           " ft fy f, ã§ã®è¡¨ç¤ºä»¶æ•°
 let QFixHowm_ShowSchedule          = 10
 let QFixHowm_ShowScheduleMenu      = 10
-let QFixHowm_RemovePriorityDays    = 100          " 100“úŒo‰ß‚µ‚½—\’èEƒŠƒ}ƒCƒ“ƒ_‚Ííœ
-let QFixHowm_JpDayOfWeek           = 1            " “ú–{Œê‚Ì—j“ú•\¦
-"let QFixHowm_VimEnterCmd          = 'y'          " ˆê“úˆê‰ñ‚¾‚¯¡“ú‚Ì—\’è‚ğ©“®•\¦
+let QFixHowm_RemovePriorityDays    = 100          " 100æ—¥çµŒéã—ãŸäºˆå®šãƒ»ãƒªãƒã‚¤ãƒ³ãƒ€ã¯å‰Šé™¤
+let QFixHowm_JpDayOfWeek           = 1            " æ—¥æœ¬èªã®æ›œæ—¥è¡¨ç¤º
+"let QFixHowm_VimEnterCmd          = 'y'          " ä¸€æ—¥ä¸€å›ã ã‘ä»Šæ—¥ã®äºˆå®šã‚’è‡ªå‹•è¡¨ç¤º
 "let QFixHowm_VimEnterMsg          = 'today's tasks'
-let QFixHowm_SwitchListActionLock  = ['{ }', '{-}', '{*}', '{_}']  " TODOƒŠƒXƒg‚Ìí—Ş
-let QFixHowm_UserSwActionLock      = ['[ ]', '[:tech]', '[:vim]', '[:!go]', '[:!buy]', '[:finished]'] " ƒJƒeƒSƒŠƒ^ƒO
+let QFixHowm_SwitchListActionLock  = ['{ }', '{-}', '{*}', '{_}']  " TODOãƒªã‚¹ãƒˆã®ç¨®é¡
+let QFixHowm_UserSwActionLock      = ['[ ]', '[:tech]', '[:vim]', '[:!go]', '[:!buy]', '[:finished]'] " ã‚«ãƒ†ã‚´ãƒªã‚¿ã‚°
 let QFixHowm_HolidayFile           = 'Sche-Hd-0000-00-00-000000.*'
-let QFixHowm_ReminderPriority      = {'@' : 1, '!' : 1, '+' : 3, '-' : 4, '~' : 5, '.' : 6} " @‚Æ!‚ğ“¯‚¶•À‚Ñ‚É
-let QFixHowm_ReminderHolidayName   = 'Œ³“ú\|¬l‚Ì“ú\|Œš‘‹L”O‚Ì“ú\|º˜a‚Ì“ú\|Œ›–@‹L”O“ú\|‚İ‚Ç‚è‚Ì“ú\|‚±‚Ç‚à‚Ì“ú\|ŠC‚Ì“ú\|Œh˜V‚Ì“ú\|‘Ìˆç‚Ì“ú\|•¶‰»‚Ì“ú\|‹Î˜JŠ´Ó‚Ì“ú\|“Vc’a¶“ú\|t•ª‚Ì“ú\|H•ª‚Ì“ú\|U‘Ö‹x“ú\|‘–¯‚Ì‹x“ú\|“ú—j“ú\|“y—j“ú'
+let QFixHowm_ReminderPriority      = {'@' : 1, '!' : 1, '+' : 3, '-' : 4, '~' : 5, '.' : 6} " @ã¨!ã‚’åŒã˜ä¸¦ã³ã«
+let QFixHowm_ReminderHolidayName   = 'å…ƒæ—¥\|æˆäººã®æ—¥\|å»ºå›½è¨˜å¿µã®æ—¥\|æ˜­å’Œã®æ—¥\|æ†²æ³•è¨˜å¿µæ—¥\|ã¿ã©ã‚Šã®æ—¥\|ã“ã©ã‚‚ã®æ—¥\|æµ·ã®æ—¥\|æ•¬è€ã®æ—¥\|ä½“è‚²ã®æ—¥\|æ–‡åŒ–ã®æ—¥\|å‹¤åŠ´æ„Ÿè¬ã®æ—¥\|å¤©çš‡èª•ç”Ÿæ—¥\|æ˜¥åˆ†ã®æ—¥\|ç§‹åˆ†ã®æ—¥\|æŒ¯æ›¿ä¼‘æ—¥\|å›½æ°‘ã®ä¼‘æ—¥\|æ—¥æ›œæ—¥\|åœŸæ›œæ—¥'
 " keymap
 nmap fd :<C-U>call qfixmemo#InsertDate('Date')<CR><Right>
 nmap fT :<C-U>call qfixmemo#InsertDate('Time')<CR><Right>
 map  fF <ESC><Insert># finished todos
 " insert action
 nmap fa fT+<Space>
-" ‚à‚Æ‚à‚Æ fa‚Éƒ}ƒbƒsƒ“ƒO‚³‚ê‚Ä‚¢‚½‚à‚Ì(memo zenbu list)
+" ã‚‚ã¨ã‚‚ã¨ faã«ãƒãƒƒãƒ”ãƒ³ã‚°ã•ã‚Œã¦ã„ãŸã‚‚ã®(memo zenbu list)
 nmap fz :<C-U>call qfixmemo#ListCmd()<CR>
-" ƒ^ƒCƒgƒ‹sŒŸõ³‹K•\Œ»‚Ì«‘‚ğ‰Šú‰»
+" ã‚¿ã‚¤ãƒˆãƒ«è¡Œæ¤œç´¢æ­£è¦è¡¨ç¾ã®è¾æ›¸ã‚’åˆæœŸåŒ–
 let QFixMRU_Title = {}
-" MRU‚Åƒ^ƒCƒgƒ‹s‚Æ‚İ‚È‚·³‹K•\Œ»(Vim‚Ì³‹K•\Œ»‚Åw’è)
+" MRUã§ã‚¿ã‚¤ãƒˆãƒ«è¡Œã¨ã¿ãªã™æ­£è¦è¡¨ç¾(Vimã®æ­£è¦è¡¨ç¾ã§æŒ‡å®š)
 let QFixMRU_Title['mkd']       = '^###[^#]'
-" grep‚Åƒ^ƒCƒgƒ‹s‚Æ‚İ‚È‚·³‹K•\Œ»(g—p‚·‚égrep‚É‚æ‚Á‚Ä‚Í•ÏX‚·‚é•K—v‚ª‚ ‚è‚Ü‚·)
+" grepã§ã‚¿ã‚¤ãƒˆãƒ«è¡Œã¨ã¿ãªã™æ­£è¦è¡¨ç¾(ä½¿ç”¨ã™ã‚‹grepã«ã‚ˆã£ã¦ã¯å¤‰æ›´ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™)
 let QFixMRU_Title['mkd_regxp'] = '^###[^#]'
-" ŠO•”ƒuƒ‰ƒEƒU
-let QFixHowm_OpenURIcmd        = '!start ' . $HOMEPATH . '\AppData\Local\Google\Chrome\Application\chrome.exe %s --disk-cache-dir="R:\Temp\Chrome"'
+" å¤–éƒ¨ãƒ–ãƒ©ã‚¦ã‚¶
+let QFixHowm_OpenURIcmd        = '!start ' . $HOMEPATH . '\AppData\Local\Google\Chrome\Application\chrome.exe %s"'
 " ------------------------ }}}
 " * unite                  {{{
 "
 let g:unite_source_history_yank_enable=1
-" “ü—Íƒ‚[ƒh‚ÅŠJn‚µ‚È‚¢
+" å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ã§é–‹å§‹ã—ãªã„
 let g:unite_enable_start_insert=0
-" ƒoƒbƒtƒ@ˆê——
+" ãƒãƒƒãƒ•ã‚¡ä¸€è¦§
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-" ƒtƒ@ƒCƒ‹ˆê——
+" ãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file bookmark<CR>
-" ƒŒƒWƒXƒ^ & yankhistoryˆê——
+" ãƒ¬ã‚¸ã‚¹ã‚¿ & yankhistoryä¸€è¦§
 nnoremap <silent> ,uy :<C-u>Unite history/yank -buffer-name=register register<CR>
-" Å‹ßg—p‚µ‚½ƒtƒ@ƒCƒ‹ˆê——
+" æœ€è¿‘ä½¿ç”¨ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§
 nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
-" í—pƒZƒbƒg
+" å¸¸ç”¨ã‚»ãƒƒãƒˆ
 nnoremap <silent> ,uu :<C-u>Unite buffer file_mru bookmark file<CR>
 " outline
 nnoremap <silent> ,uo :<C-u>Unite outline<CR>
 " twitter
 nnoremap <silent> ,ut :<C-u>Unite tweetvim<CR>
-" ‘S•”æ‚¹
+" å…¨éƒ¨ä¹—ã›
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file outline<CR>
-" ƒEƒBƒ“ƒhƒE‚ğ•ªŠ„‚µ‚ÄŠJ‚­
+" ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’åˆ†å‰²ã—ã¦é–‹ã
 au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-" ƒEƒBƒ“ƒhƒE‚ğc‚É•ªŠ„‚µ‚ÄŠJ‚­
+" ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ç¸¦ã«åˆ†å‰²ã—ã¦é–‹ã
 au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
 au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-" ESCƒL[‚ğ2‰ñ‰Ÿ‚·‚ÆI—¹‚·‚é
+" ESCã‚­ãƒ¼ã‚’2å›æŠ¼ã™ã¨çµ‚äº†ã™ã‚‹
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 " ------------------------ }}}
 " * neocomplcache         {{{
 " " see http://vim-users.jp/2010/10/hack177/
 let g:neocomplcache_enable_at_startup            = 1 " Use neocomplcache.
-let g:neocomplcache_enable_smart_case            = 1 " Use smartcase.(‘å•¶š‚ª“ü—Í‚³‚ê‚é‚Ü‚Å‘å•¶š¬•¶š‚Ì‹æ•Ê‚ğ–³‹)
-let g:neocomplcache_enable_camel_case_completion = 0 " camelCaseCompletion. FA‚Æ“ü—Í‚·‚é‚ÆA“à•”‚Å‚ÍF*A*‚Ì‚æ‚¤‚É•ÏŠ·‚·‚é‹@”\ –³Œø
-let g:neocomplcache_enable_underbar_completion   = 1 " _‹æØ‚è‚Ì•âŠ® —LŒø‰»
-let g:neocomplcache_min_syntax_length            = 3 " ƒVƒ“ƒ^ƒbƒNƒX‚ğƒLƒƒƒbƒVƒ…‚·‚é‚Æ‚«‚ÌÅ¬•¶š’·
-let g:neocomplcache_temporary_dir                = 'R:\Temp\.neocon'
-" let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*' " ku.vim‚âfizzyfinder‚È‚ÇA‘Š«‚Ìˆ«‚¢plugin—p •s—v
+let g:neocomplcache_enable_smart_case            = 1 " Use smartcase.(å¤§æ–‡å­—ãŒå…¥åŠ›ã•ã‚Œã‚‹ã¾ã§å¤§æ–‡å­—å°æ–‡å­—ã®åŒºåˆ¥ã‚’ç„¡è¦–)
+let g:neocomplcache_enable_camel_case_completion = 0 " camelCaseCompletion. FAã¨å…¥åŠ›ã™ã‚‹ã¨ã€å†…éƒ¨ã§ã¯F*A*ã®ã‚ˆã†ã«å¤‰æ›ã™ã‚‹æ©Ÿèƒ½ ç„¡åŠ¹
+let g:neocomplcache_enable_underbar_completion   = 1 " _åŒºåˆ‡ã‚Šã®è£œå®Œ æœ‰åŠ¹åŒ–
+let g:neocomplcache_min_syntax_length            = 3 " ã‚·ãƒ³ã‚¿ãƒƒã‚¯ã‚¹ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã™ã‚‹ã¨ãã®æœ€å°æ–‡å­—é•·
+" let g:neocomplcache_temporary_dir                = ''
+" let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*' " ku.vimã‚„fizzyfinderãªã©ã€ç›¸æ€§ã®æ‚ªã„pluginç”¨ ä¸è¦
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : '',
@@ -259,7 +279,7 @@ let g:neocomplcache_dictionary_filetype_lists = {
 if !exists('g:neocomplcache_keyword_patterns')
   let g:neocomplcache_keyword_patterns = {}
 endif
-" let g:neocomplcache_keyword_patterns['default'] = '\h\w*' "ƒL[ƒ[ƒhƒpƒ^[ƒ“‚Ìİ’è?
+" let g:neocomplcache_keyword_patterns['default'] = '\h\w*' "ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰ãƒ‘ã‚¿ãƒ¼ãƒ³ã®è¨­å®š?
 
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neocomplcache_snippets_expand)
@@ -281,7 +301,7 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
-let g:neocomplcache_enable_auto_select = 1 " AutoComplPop like behavior.(Å‰‚ÌŒó•â‚ğ‘I‘ğ)
+let g:neocomplcache_enable_auto_select = 1 " AutoComplPop like behavior.(æœ€åˆã®å€™è£œã‚’é¸æŠ)
 
 " Shell like behavior(not recommended).
 "set completeopt+=longest
@@ -315,15 +335,17 @@ let vimshell_user_prompt    = 'getcwd()'
 vnoremap e y:CODSelected<CR>
 " ------------------------ }}}
 " * key mapping            {{{
-map <C-w>t :tabn<CR>
-map <C-w>e :tabnew
-map <C-w>w :set wrap!<CR>
+nmap <C-w>t :tabn<CR>
+nmap <C-w>e :tabnew
+nmap <C-w>w :set wrap!<CR>
 map <ESC><ESC> :noh<CR>:cclose<CR>
-" xml‚Ì®Œ` http://mattn.kaoriya.net/software/lang/python/20120209221728.htm
-map <Leader>x !python -m BeautifulSoup<CR>
-map <Leader>x !python -m BeautifulSoup<CR>
-" messages‚ğƒNƒŠƒbƒvƒ{[ƒh‚É
-map <C-r>m :redir @*<CR>:silent messages<CR>:redir END<CR>
+" xmlã®æ•´å½¢ http://mattn.kaoriya.net/software/lang/python/20120209221728.htm
+nmap <Leader>x !python -m BeautifulSoup<CR>
+nmap <Leader>x !python -m BeautifulSoup<CR>
+" messagesã‚’ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«
+nmap <C-r>m :redir @*<CR>:silent messages<CR>:redir END<CR>
+" to doã®ä¸€è¦§ã‚’quickfixã«è¡¨ç¤ºã™ã‚‹ via.http://d.hatena.ne.jp/akihito_s/20110727
+nmap <Leader>t :noautocmd vimgrep /TODO/j **/*.xml **/*.scala **/*.java <CR>:cw<CR>
 " ------------------------ }}}
 " * quickrun.vim          "{{{
 function! s:clear_quickrunbuffer()
@@ -350,17 +372,19 @@ let g:vimfiler_as_default_explorer = 1
 nmap <silent> ,u<Space> :VimFilerBufferDir<CR>
 " ------------------------ }}}
 " * tweetvim {{{
-map ,tt <CR>:TweetVimSay<CR>
-" au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+nmap ,te :<C-u>TweetVimSay<CR>
+nmap ,ts :<C-u>TweetVimSearch<Space>
+nmap ,tt :<C-u>TweetVimHomeTimeline<CR>
+nmap ,tv :<C-u>TweetVimListStatuses vim<CR>
+let g:tweetvim_tweet_per_page=50
+let g:tweetvim_expand_t_co=1
+" let g:tweetvim_display_time=1
 " ------------------------ }}}
 " * flake8 {{{
 let g:flake8_ignore='E501,E221,E701,E203' " ignore line too long & multiple statements on one line
 " ------------------------ }}}
 " * restart.vim {{{
 command! RestartWithSession let g:restart_sessionoptions = 'blank,curdir,folds,help,localoptions,tabpages' | Restart
-" ------------------------ }}}
-" * sources               "{{{
-source ~/.vim/vimrc_source/personal.vimrc
 " ------------------------ }}}
 " * cursorline            "{{{
 " via.http://d.hatena.ne.jp/thinca/20090530/1243615055
@@ -403,10 +427,18 @@ nnoremap <silent> ,en :<C-u>EvervimCreateNote<CR>
 nnoremap <silent> ,eb :<C-u>EvervimOpenBrowser<CR>
 nnoremap <silent> ,ec :<C-u>EvervimOpenClient<CR>
 nnoremap ,es :<C-u>EvervimSearchByQuery<SPACE>
-nnoremap <silent> ,et :<C-u>EvervimSearchByQuery<SPACE>tag:todo -tag:done<CR>
+nnoremap <silent> ,et :<C-u>EvervimSearchByQuery<SPACE>tag:todo -tag:done -tag:someday<CR>
+nnoremap <silent> ,eta :<C-u>EvervimSearchByQuery<SPACE>tag:todo -tag:done<CR>
 let g:evervim_splitoption=''
+let g:evervim_usermarkdown='0'
 " ------------------------ }}}
 " * vim-redmine {{{
 nnoremap ,ra :<C-u>RedmineAddTicket<Space>
 nnoremap ,rd :<C-u>RedmineAddTicketWithDiscription<Space>
+" ------------------------ }}}
+" * migemo {{{
+nnoremap // :<C-u>Migemo<CR>
+" ------------------------ }}}
+" * sources               "{{{
+source ~/.vim/vimrc_source/personal.vimrc
 " ------------------------ }}}
