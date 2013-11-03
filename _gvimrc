@@ -14,14 +14,13 @@ hi StatusLine  guifg=lightcyan guibg=#006f40 gui=none    ctermfg=blue ctermbg=gr
 if has('win32') || has('win64')
     set transparency=220
     set guifont=MeiryoKe_Console:h9:cSHIFTJIS
+    " <C-g>tで背景透過,<C-g>gで戻す
+    map <C-g>t :set transparency=220<CR>
+    map <C-g>g :set transparency=0<CR>
 endif
 if has('unix')
     set guifont=TakaoGothic\ 14
 endif
-" <C-g>tで背景透過,<C-g>gで戻す
-map <C-g>t :set transparency=220<CR>
-map <C-g>g :set transparency=0<CR>
-set transparency=220
 " メニューを表示しない
 set guioptions-=m
 set guioptions-=T
