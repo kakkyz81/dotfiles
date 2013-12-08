@@ -1,0 +1,41 @@
+" :open / :topen 時のURL補完
+" S:検索エンジンの補完
+" l:Firefox location bar entries
+set complete=Slh
+
+" エラーメッセージ表示時のbeep音をOFF
+set noerrorbells
+
+" ページロード時にテキストボックスにフォーカスするのを防ぐ
+" ※'gi'を入力すればテキストボックスにフォーカスする
+set focuscontent
+
+" 検索結果を強調表示
+set hlsearch
+
+" 検索文字列を入力と同時にマッチする結果を表示
+set incsearch
+
+" リストに表示する最大数
+set maxitems=10
+
+" ステータスバーの表示設定
+set status=input,location,bookmark,history,tabcount,position
+
+" ポップアップウィンドウを新規タブで表示
+set popups=tab
+
+" コマンドラインに現在のモードを表示
+set showmode
+
+" ブラウザタイトルの変更
+" set titlestring="Mozilla Firefox 4.0.1"
+
+" ツールバーの表示設定
+set toolbars=noaddons,nobookmarks,nomenu,navigation,notabs
+
+" リンクのURIをステータスラインに表示
+set showstatuslinks=1
+
+" メッセージ出力の詳細度設定(min:1,max:15)
+set verbose=5

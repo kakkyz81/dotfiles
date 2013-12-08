@@ -1,0 +1,10 @@
+[user]
+	name = kakkyz
+    email = kakkyz81@gmail.com
+[alias]
+    ci = commit
+    st = status
+[color]
+    diff = auto
+    status = auto
+    branch = auto
