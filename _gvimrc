@@ -19,7 +19,7 @@ if has('win32') || has('win64')
     map <C-g>g :set transparency=0<CR>
 endif
 if has('unix')
-    set guifont=TakaoGothic\ 14
+    set guifont=TakaoGothic\ 11
 endif
 " メニューを表示しない
 set guioptions-=m
