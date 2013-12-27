@@ -42,7 +42,7 @@ NeoBundle 'fs111/pydoc.vim'
 NeoBundle 'fuenor/qfixhowm'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'h1mesuke/vim-alignta'
-NeoBundle 'kakkyz81/evervim' , { 'rev' : 'unite' }
+NeoBundle 'kakkyz81/evervim' , { 'rev' : 'unite' , 'depends' : 'tyru/open-browser.vim'}
 NeoBundle 'kakkyz81/vim-redmine'
 NeoBundle 'mattn/mkdpreview-vim'
 NeoBundle 'mattn/webapi-vim'
@@ -55,7 +55,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'vim-jp/vital.vim'
-NeoBundle 'koron/imcsc-vim' , { 'rtp' : 'uim-ctlso' }
+" NeoBundle 'koron/imcsc-vim' , { 'rtp' : 'uim-ctlso' }
 NeoBundleLazy 'yuratomo/w3m.vim'
 " from vim.org
 NeoBundle 'Align'
