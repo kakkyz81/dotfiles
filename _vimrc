@@ -239,8 +239,8 @@ let QFixHowm_OpenURIcmd        = '!start ' . $HOMEPATH . '\AppData\Local\Google\
 let g:unite_source_history_yank_enable=1
 " 入力モードで開始しない
 let g:unite_enable_start_insert=0
-" バッファ一覧
-nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+" バッファ&bookmark
+nnoremap <silent> ,ub :<C-u>Unite bookmark buffer<CR>
 " ファイル一覧
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file bookmark<CR>
 " レジスタ & yankhistory一覧
