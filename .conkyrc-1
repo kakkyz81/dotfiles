@@ -1,0 +1,59 @@
+# 位置
+alignment bottom_left
+background no
+border_width 1
+cpu_avg_samples 2
+# ちらつき対策
+double_buffer yes
+own_window yes
+own_window_class Conky
+# normalにしないとdesktopクリック時に消える
+own_window_type normal
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_argb_visual yes
+own_window_transparent yes
+
+default_color white
+default_outline_color white
+default_shade_color white
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+use_xft yes
+override_utf8_locale yes
+# xftfont DejaVu Sans Mono:size=10
+xftfont TakaoGothic:size=10
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+stippled_borders 0
+update_interval 1.0
+uppercase no
+use_spacer none
+show_graph_scale no
+show_graph_range no
+#max_user_text 30000
+#max_text_width 30000
+# 配置
+gap_x 5
+gap_y 13
+minimum_size 5 5
+#maximum_width 1900
+# execiの戻り値が長い時(task list)
+#text_buffer_size 30000
+#-----------------------------------------------------------------------------------
+TEXT
+${color grey}Uptime:$color $uptime
+${color grey}RAM Usage:$color $mem/$memmax ${alignr} $memperc%
+${color grey}Swap Usage:$color $swap/$swapmax ${alignr} $swapperc%
+${color grey}CPU:  ${color}${color ffffff}${alignr}${cpu}${color}%
+${color grey}Core1:           ${color}${texeci 5 sensors | grep 'Core 0' | awk '{ print $3 }'} ${alignr} ${cpu cpu1}%
+${color grey}Core2:           ${color}${texeci 5 sensors | grep 'Core 1' | awk '{ print $3 }'} ${alignr} ${cpu cpu2}%
+${color grey}Core3:           ${color}${texeci 5 sensors | grep 'Core 2' | awk '{ print $3 }'} ${alignr} ${cpu cpu3}%
+${color grey}Core4:           ${color}${texeci 5 sensors | grep 'Core 3' | awk '{ print $3 }'} ${alignr} ${cpu cpu4}%
+${color grey}Network:         Up:$color ${alignr}${upspeed eth0}
+${color grey}               Down:$color ${alignr}${downspeed eth0}
+
