@@ -1,4 +1,4 @@
-" vim:fdm=marker
+" vim:fdm=marker fdl=0:
 " -------------------------------------------------------------------------
 "  _vimrc main
 " -------------------------------------------------------------------------
@@ -11,64 +11,60 @@ set visualbell            " no sound flash bell
 " * vundle                "{{{
 "
 filetype off
-if has('vim_starting')
-    " for windows -> mklink /D ~\.vim ~\dropbox\apps\vim\.vim
-   set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-call neobundle#rc(expand('~/.vim/bundle/'))
-
+" for windows -> mklink /D ~\.vim ~\dropbox\apps\vim\.vim
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 " Let NeoBundle manage NeoBundle
-NeoBundle 'Shougo/neobundle.vim'
+Plugin 'gmarik/Vundle.vim'
 
-" Recommended to install
-" After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
-NeoBundle 'Shougo/vimproc'
-
-" from github
-" NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'MarcWeber/vim-addon-actions'
-NeoBundle 'MarcWeber/vim-addon-mw-utils'
-NeoBundle 'MarcWeber/vim-addon-sbt'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'basyura/TweetVim'
-NeoBundle 'basyura/bitly.vim'
-NeoBundle 'basyura/twibill.vim'
-NeoBundle 'basyura/unite-yarm'
-NeoBundle 'fs111/pydoc.vim'
-NeoBundle 'fuenor/qfixhowm'
-NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'h1mesuke/vim-alignta'
-NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'kakkyz81/evervim' , { 'rev' : 'unite' , 'depends' : 'tyru/open-browser.vim'}
-NeoBundle 'kakkyz81/vim-redmine'
-NeoBundle 'mattn/mkdpreview-vim'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'motemen/hatena-vim.git'
-NeoBundle 'nelstrom/vim-markdown-folding'
-NeoBundle 'nvie/vim-flake8'
-NeoBundle 'othree/eregex.vim'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'vim-jp/vital.vim'
-" NeoBundle 'koron/imcsc-vim' , { 'rtp' : 'uim-ctlso' }
-NeoBundleLazy 'yuratomo/w3m.vim'
-" from vim.org
-NeoBundle 'Align'
-NeoBundle 'BufOnly.vim'
-NeoBundle 'VimRepress'
-NeoBundle 'YankRing.vim'
-NeoBundle 'bufferlist.vim'
-NeoBundle 'calendar.vim'
-NeoBundle 'cursoroverdictionary'
-NeoBundle 'grep.vim'
-NeoBundle 'project.tar.gz'
-NeoBundle 'restart.vim'
-
+"   " from github
+"   " Plugin 'derekwyatt/vim-scala'
+Plugin 'ctrlpvim/ctrlp.vim'
+"   Plugin 'MarcWeber/vim-addon-actions'
+"   Plugin 'MarcWeber/vim-addon-mw-utils'
+"   Plugin 'MarcWeber/vim-addon-sbt'
+Plugin 'Shougo/neocomplcache'
+"   Plugin 'Shougo/unite.vim'
+"   Plugin 'Shougo/vimfiler'
+Plugin 'Shougo/vimshell'
+Plugin 'basyura/TweetVim'
+"   Plugin 'basyura/bitly.vim'
+"   Plugin 'basyura/twibill.vim'
+"   Plugin 'basyura/unite-yarm'
+"   Plugin 'fs111/pydoc.vim'
+"   Plugin 'fuenor/qfixhowm'
+"   Plugin 'h1mesuke/unite-outline'
+"   Plugin 'h1mesuke/vim-alignta'
+Plugin 'tyru/open-browser.vim'
+Plugin 'kakkyz81/evervim' , { 'rev' : 'unite' , 'depends' : 'tyru/open-browser.vim'}
+"   Plugin 'kakkyz81/vim-redmine'
+"   Plugin 'mattn/mkdpreview-vim'
+Plugin 'mattn/webapi-vim'
+"   Plugin 'mattn/emmet-vim'
+Plugin 'motemen/hatena-vim.git'
+Plugin 'nelstrom/vim-markdown-folding'
+"   Plugin 'nvie/vim-flake8'
+"   Plugin 'othree/eregex.vim'
+Plugin 'thinca/vim-quickrun'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'LeafCage/yankround.vim'
+"   Plugin 'vim-jp/vital.vim'
+"   " Plugin 'koron/imcsc-vim' , { 'rtp' : 'uim-ctlso' }
+Plugin 'yuratomo/w3m.vim'
+"   " from vim.org
+Plugin 'Align'
+Plugin 'BufOnly.vim'
+"   Plugin 'VimRepress'
+"   Plugin 'YankRing.vim'
+Plugin 'bufferlist.vim'
+"   Plugin 'calendar.vim'
+"   Plugin 'cursoroverdictionary'
+"   Plugin 'grep.vim'
+Plugin 'project.tar.gz'
+Plugin 'restart.vim'
+call vundle#end()
 filetype plugin indent on
 " ------------------------ }}}
 " * edit                  "{{{
@@ -89,6 +85,7 @@ set backupdir=$HOME/temp
 set undofile              " 再読込、vim終了後も継続するundo
 set undodir=$HOME/temp
 set nopaste               " for neocomplcache
+set foldlevelstart=2
 "autocmd BufWritePre *.py :%S/\s+$//ge
 syntax on                 " Enable syntax highlighting
 " 末尾空白の除去
@@ -162,77 +159,13 @@ map <F8> :w<CR>:!spec -fs %
 map <F9> :w<CR>:source %<CR>
 "map <F10>
 "map <F11>
-map <silent> <F12> :call BufferList()<CR>
+"map <silent> <F12> :call BufferList()<CR>
 " ------------------------ }}}
 " * fugitive               {{{
 nmap ,gc :Gcommit<CR>
 nmap ,gl :Glog<CR>:copen<CR>
 nmap ,gd :Gdiff<CR>
 nmap ,gs :Gstatus<CR>
-" ------------------------ }}}
-" * QFixHowm               {{{
-let howm_dir              = '~/Dropbox/personal/howm'
-let howm_fileencoding     = 'utf-8'
-let howm_fileformat       = 'dos'
-" デフォルトをMarkdown形式に
-let QFixHowm_HowmMode     = 0
-let QFixHowm_Title        = '#'
-let suffix                = 'mkd'
-let QFixHowm_UserFileType = 'markdown'
-let QFixHowm_UserFileExt  = suffix
-let howm_filename         = '%Y/%m/%Y-%m-%d-%H%M%S.'.suffix
-let QFixHowm_DiaryFile    = 'diary/%Y/%Y-%m-%d.mkd'          " 日記は diaryディレクトリに作成
-let qfixmemo_mapleader    = ',f'                              " g, の代わり
-let qfixmemo_folding      = 1                               " フォールディング
-function! QFixMemoSetFolding()
-    setlocal nofoldenable
-    setlocal foldmethod=expr
-"    setlocal foldexpr=getline(v:lnum)=~qfixmemo_folding_pattern?'>1':'1'
-endfunction
-"let qfixmemo_folding_pattern = '^#[^#]'                     "
-"let howm_filename         = '%Y/%m/%Y-%m-%d-000000.'.suffix "一日一ファイルで使用する時
-let QFixHowm_Template = [
- \"%TITLE% %TAG%",
- \""
-\]
-"クイックメモファイル名設定
-"デフォルトとfUでは通常のクイックメモ、
-"1fuでキーボードショートカットを集めたメモ
-let QFixHowm_QuickMemoFile  = "Qmem-00-0000-00-00-000000.mkd"
-let QFixHowm_QuickMemoFile1 = "KeyboardShortcuts-0000000.mkd"
-
-" その他
-"let mygrepprg                      = 'grep'    " 指定するとうまく動かない
-let QFixHowm_ListReminder_ScheExt  = '[-@!]'    " fyで表示 リマインダ、予定、締切
-let QFixHowm_ListReminder_TodoExt  = '[-@+!~.]' " ftで全部
-let QFixHowm_ShowScheduleTodo      = 10           " ft fy f, での表示件数
-let QFixHowm_ShowSchedule          = 10
-let QFixHowm_ShowScheduleMenu      = 10
-let QFixHowm_RemovePriorityDays    = 100          " 100日経過した予定・リマインダは削除
-let QFixHowm_JpDayOfWeek           = 1            " 日本語の曜日表示
-"let QFixHowm_VimEnterCmd          = 'y'          " 一日一回だけ今日の予定を自動表示
-"let QFixHowm_VimEnterMsg          = 'today's tasks'
-let QFixHowm_SwitchListActionLock  = ['{ }', '{-}', '{*}', '{_}']  " TODOリストの種類
-let QFixHowm_UserSwActionLock      = ['[ ]', '[:tech]', '[:vim]', '[:!go]', '[:!buy]', '[:finished]'] " カテゴリタグ
-let QFixHowm_HolidayFile           = 'Sche-Hd-0000-00-00-000000.*'
-let QFixHowm_ReminderPriority      = {'@' : 1, '!' : 1, '+' : 3, '-' : 4, '~' : 5, '.' : 6} " @と!を同じ並びに
-let QFixHowm_ReminderHolidayName   = '元日\|成人の日\|建国記念の日\|昭和の日\|憲法記念日\|みどりの日\|こどもの日\|海の日\|敬老の日\|体育の日\|文化の日\|勤労感謝の日\|天皇誕生日\|春分の日\|秋分の日\|振替休日\|国民の休日\|日曜日\|土曜日'
-" keymap
-nmap fd :<C-U>call qfixmemo#InsertDate('Date')<CR><Right>
-nmap fT :<C-U>call qfixmemo#InsertDate('Time')<CR><Right>
-map  fF <ESC><Insert># finished todos
-" insert action
-nmap fa fT+<Space>
-" もともと faにマッピングされていたもの(memo zenbu list)
-nmap fz :<C-U>call qfixmemo#ListCmd()<CR>
-" タイトル行検索正規表現の辞書を初期化
-let QFixMRU_Title = {}
-" MRUでタイトル行とみなす正規表現(Vimの正規表現で指定)
-let QFixMRU_Title['mkd']       = '^###[^#]'
-" grepでタイトル行とみなす正規表現(使用するgrepによっては変更する必要があります)
-let QFixMRU_Title['mkd_regxp'] = '^###[^#]'
-" 外部ブラウザ
-let QFixHowm_OpenURIcmd        = '!start ' . $HOMEPATH . '\AppData\Local\Google\Chrome\Application\chrome.exe %s"'
 " ------------------------ }}}
 " * unite                  {{{
 "
@@ -372,7 +305,7 @@ let g:quickrun_config['*'] = { 'split': 'below' ,
 let g:quickrun_config['python'] = {} "{ 'outputter/buffer/append': 1 }
 " ------------------------ }}}
 " * vimfiler {{{
-let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_as_default_explorer = 0
 nmap <silent> ,u<Space> :VimFilerBufferDir<CR>
 " ------------------------ }}}
 " * tweetvim {{{
@@ -423,6 +356,10 @@ command! RestartWithSession let g:restart_sessionoptions = 'blank,curdir,folds,h
 " ------------------------ }}}
 " * project.vim {{{
 let g:proj_flags="imstv"
+nmap <C-o><C-p> :<C-u>Project<CR>
+" # [YYYY-MM-DD HH:MM] を自動入力
+nmap <C-o><C-i> 0i<C-u># [<C-R>=strftime("%Y/%m/%d %H:%M")<CR>]<Space>
+nmap <C-o><C-d> 0i<C-u>[<C-R>=strftime("%Y/%m/%d (%a) %H:%M")<CR>]<Space>
 " ------------------------ }}}
 " * evervim {{{
 nnoremap <silent> ,el :<C-u>EvervimNotebookList<CR>
@@ -442,6 +379,22 @@ nnoremap ,rd :<C-u>RedmineAddTicketWithDiscription<Space>
 " ------------------------ }}}
 " * migemo {{{
 nnoremap // :<C-u>Migemo<CR>
+" ------------------------ }}}
+" * CtrlP {{{
+let g:ctrlp_map = '<c-h>'
+nmap ,m :<C-u>CtrlPMRU<CR>
+nmap ,a :<C-u>CtrlPMixed<CR>
+let g:ctrlp_extensions = ['quickfix', 'dir', 'undo']
+" ------------------------ }}}
+" * Yankround {{{
+nmap p <Plug>(yankround-p)
+xmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+xmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
 " ------------------------ }}}
 " * sources               "{{{
 source ~/.vim//personal.vimrc
