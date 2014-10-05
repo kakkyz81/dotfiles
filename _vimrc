@@ -28,6 +28,7 @@ Plugin 'Shougo/neocomplcache'
 "   Plugin 'Shougo/vimfiler'
 Plugin 'Shougo/vimshell'
 Plugin 'basyura/TweetVim'
+Plugin 'farseer90718/vim-taskwarrior'
 "   Plugin 'basyura/bitly.vim'
 "   Plugin 'basyura/twibill.vim'
 "   Plugin 'basyura/unite-yarm'
@@ -385,6 +386,11 @@ let g:ctrlp_map = '<c-h>'
 nmap ,m :<C-u>CtrlPMRU<CR>
 nmap ,a :<C-u>CtrlPMixed<CR>
 let g:ctrlp_extensions = ['quickfix', 'dir', 'undo']
+" ------------------------ }}}
+" * Taskwarrior {{{
+nmap <C-t><C-t> :<C-u>TW<CR>
+nmap <C-t>a :<C-u>TW add<Space>
+let g:task_default_prompt  = ['due', 'description','tag']
 " ------------------------ }}}
 " * Yankround {{{
 nmap p <Plug>(yankround-p)
