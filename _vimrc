@@ -66,6 +66,8 @@ Plugin 'bufferlist.vim'
 "   Plugin 'grep.vim'
 Plugin 'project.tar.gz'
 Plugin 'restart.vim'
+" js syntax check
+" Plugin 'scrooloose/syntastic'
 call vundle#end()
 filetype plugin indent on
 " ------------------------ }}}
@@ -79,13 +81,14 @@ set laststatus=2
 set modeline
 set modelines=5
 set clipboard=unnamedplus,unnamed
+let wokrdir = ($HOME . "/temp")
 if !isdirectory($HOME . "/temp")
     call mkdir($HOME. "/temp")
 endif
-set directory=$HOME/temp     " swapfileの作成場所
-set backupdir=$HOME/temp
+set directory=/var/tmp     " swapfileの作成場所
+set backupdir=/var/tmp
 set undofile              " 再読込、vim終了後も継続するundo
-set undodir=$HOME/temp
+set undodir=/var/tmp
 set nopaste               " for neocomplcache
 set foldlevelstart=2
 "autocmd BufWritePre *.py :%S/\s+$//ge
@@ -403,6 +406,21 @@ nmap gP <Plug>(yankround-gP)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 " ------------------------ }}}
+" * syntastic {{{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_javascript_jshint_args = '--config /home/kakkyz/dotfiles/.jshintrc'
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_mode_map = {
+   \ "mode" : "active",
+   \ "active_filetypes" : ["javascript", "json"],
+\}
+"------------------------ }}}
 " * sources               "{{{
 source ~/.vim//personal.vimrc
 " ------------------------ }}}
