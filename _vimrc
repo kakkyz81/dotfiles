@@ -2,74 +2,45 @@
 " -------------------------------------------------------------------------
 "  _vimrc main
 " -------------------------------------------------------------------------
-" * general               "{{{
-set nocompatible          " We're running Vim, not Vi!
-set autoread
-set visualbell            " no sound flash bell
+"
+" Vundle init
+set nocompatible
+filetype off
+set rtp+=D:\cygwin64\bin
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
 "set grepprg=grep\ -nH
 " ------------------------ }}}
 " * vundle                "{{{
-"
-filetype off
-if has('vim_starting')
-    " for windows -> mklink /D ~\.vim ~\dropbox\apps\vim\.vim
-   set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-call neobundle#rc(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-NeoBundle 'Shougo/neobundle.vim'
-
-" Recommended to install
-" After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
-NeoBundle 'Shougo/vimproc'
 
 " from github
-" NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'MarcWeber/vim-addon-actions'
-NeoBundle 'MarcWeber/vim-addon-mw-utils'
-NeoBundle 'MarcWeber/vim-addon-sbt'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'basyura/TweetVim'
-NeoBundle 'basyura/bitly.vim'
-NeoBundle 'basyura/twibill.vim'
-NeoBundle 'basyura/unite-yarm'
-NeoBundle 'fs111/pydoc.vim'
-NeoBundle 'fuenor/qfixhowm'
-NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'h1mesuke/vim-alignta'
-NeoBundle 'kakkyz81/evervim' , { 'rev' : 'unite' , 'depends' : 'tyru/open-browser.vim'}
-NeoBundle 'kakkyz81/vim-redmine'
-NeoBundle 'mattn/mkdpreview-vim'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'motemen/hatena-vim.git'
-NeoBundle 'nelstrom/vim-markdown-folding'
-NeoBundle 'nvie/vim-flake8'
-NeoBundle 'othree/eregex.vim'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'vim-jp/vital.vim'
-" NeoBundle 'koron/imcsc-vim' , { 'rtp' : 'uim-ctlso' }
-NeoBundleLazy 'yuratomo/w3m.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'h1mesuke/vim-alignta'
+" Plugin 'kakkyz81/evervim' , { 'rev' : 'unite' , 'depends' : 'tyru/open-browser.vim'}
+Plugin 'kakkyz81/evervim'
+Plugin 'nelstrom/vim-markdown-folding'
+" Plugin 'nvie/vim-flake8'
+" Plugin 'kakkyz81/eregex.vim'
+Plugin 'thinca/vim-quickrun'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tyru/open-browser.vim'
 " from vim.org
-NeoBundle 'Align'
-NeoBundle 'BufOnly.vim'
-NeoBundle 'VimRepress'
-NeoBundle 'YankRing.vim'
-NeoBundle 'bufferlist.vim'
-NeoBundle 'calendar.vim'
-NeoBundle 'cursoroverdictionary'
-NeoBundle 'grep.vim'
-NeoBundle 'project.tar.gz'
-NeoBundle 'restart.vim'
+Plugin 'BufOnly.vim'
+Plugin 'bufferlist.vim'
+Plugin 'project.tar.gz'
+Plugin 'restart.vim'
 
+call vundle#end()
 filetype plugin indent on
+" ------------------------ }}}
+" * general               "{{{
+set autoread
+set visualbell            " no sound flash bell
 " ------------------------ }}}
 " * edit                  "{{{
 set nu
@@ -116,6 +87,7 @@ set expandtab
 set tabstop=4             "Tab文字を画面上の見た目で何文字幅にするか設定
 set shiftwidth=4          "自動で挿入されるタブの幅
 set softtabstop=4         "タブの代わりに空白をいれるときの空白数。0だと無効。
+set tw=0
 " ------------------------ }}}
 " * search                "{{{
 set hlsearch
@@ -170,171 +142,6 @@ nmap ,gl :Glog<CR>:copen<CR>
 nmap ,gd :Gdiff<CR>
 nmap ,gs :Gstatus<CR>
 " ------------------------ }}}
-" * QFixHowm               {{{
-let howm_dir              = '~/Dropbox/personal/howm'
-let howm_fileencoding     = 'utf-8'
-let howm_fileformat       = 'dos'
-" デフォルトをMarkdown形式に
-let QFixHowm_HowmMode     = 0
-let QFixHowm_Title        = '#'
-let suffix                = 'mkd'
-let QFixHowm_UserFileType = 'markdown'
-let QFixHowm_UserFileExt  = suffix
-let howm_filename         = '%Y/%m/%Y-%m-%d-%H%M%S.'.suffix
-let QFixHowm_DiaryFile    = 'diary/%Y/%Y-%m-%d.mkd'          " 日記は diaryディレクトリに作成
-let qfixmemo_mapleader    = ',f'                              " g, の代わり
-let qfixmemo_folding      = 1                               " フォールディング
-function! QFixMemoSetFolding()
-    setlocal nofoldenable
-    setlocal foldmethod=expr
-"    setlocal foldexpr=getline(v:lnum)=~qfixmemo_folding_pattern?'>1':'1'
-endfunction
-"let qfixmemo_folding_pattern = '^#[^#]'                     "
-"let howm_filename         = '%Y/%m/%Y-%m-%d-000000.'.suffix "一日一ファイルで使用する時
-let QFixHowm_Template = [
- \"%TITLE% %TAG%",
- \""
-\]
-"クイックメモファイル名設定
-"デフォルトとfUでは通常のクイックメモ、
-"1fuでキーボードショートカットを集めたメモ
-let QFixHowm_QuickMemoFile  = "Qmem-00-0000-00-00-000000.mkd"
-let QFixHowm_QuickMemoFile1 = "KeyboardShortcuts-0000000.mkd"
-
-" その他
-"let mygrepprg                      = 'grep'    " 指定するとうまく動かない
-let QFixHowm_ListReminder_ScheExt  = '[-@!]'    " fyで表示 リマインダ、予定、締切
-let QFixHowm_ListReminder_TodoExt  = '[-@+!~.]' " ftで全部
-let QFixHowm_ShowScheduleTodo      = 10           " ft fy f, での表示件数
-let QFixHowm_ShowSchedule          = 10
-let QFixHowm_ShowScheduleMenu      = 10
-let QFixHowm_RemovePriorityDays    = 100          " 100日経過した予定・リマインダは削除
-let QFixHowm_JpDayOfWeek           = 1            " 日本語の曜日表示
-"let QFixHowm_VimEnterCmd          = 'y'          " 一日一回だけ今日の予定を自動表示
-"let QFixHowm_VimEnterMsg          = 'today's tasks'
-let QFixHowm_SwitchListActionLock  = ['{ }', '{-}', '{*}', '{_}']  " TODOリストの種類
-let QFixHowm_UserSwActionLock      = ['[ ]', '[:tech]', '[:vim]', '[:!go]', '[:!buy]', '[:finished]'] " カテゴリタグ
-let QFixHowm_HolidayFile           = 'Sche-Hd-0000-00-00-000000.*'
-let QFixHowm_ReminderPriority      = {'@' : 1, '!' : 1, '+' : 3, '-' : 4, '~' : 5, '.' : 6} " @と!を同じ並びに
-let QFixHowm_ReminderHolidayName   = '元日\|成人の日\|建国記念の日\|昭和の日\|憲法記念日\|みどりの日\|こどもの日\|海の日\|敬老の日\|体育の日\|文化の日\|勤労感謝の日\|天皇誕生日\|春分の日\|秋分の日\|振替休日\|国民の休日\|日曜日\|土曜日'
-" keymap
-nmap fd :<C-U>call qfixmemo#InsertDate('Date')<CR><Right>
-nmap fT :<C-U>call qfixmemo#InsertDate('Time')<CR><Right>
-map  fF <ESC><Insert># finished todos
-" insert action
-nmap fa fT+<Space>
-" もともと faにマッピングされていたもの(memo zenbu list)
-nmap fz :<C-U>call qfixmemo#ListCmd()<CR>
-" タイトル行検索正規表現の辞書を初期化
-let QFixMRU_Title = {}
-" MRUでタイトル行とみなす正規表現(Vimの正規表現で指定)
-let QFixMRU_Title['mkd']       = '^###[^#]'
-" grepでタイトル行とみなす正規表現(使用するgrepによっては変更する必要があります)
-let QFixMRU_Title['mkd_regxp'] = '^###[^#]'
-" 外部ブラウザ
-let QFixHowm_OpenURIcmd        = '!start ' . $HOMEPATH . '\AppData\Local\Google\Chrome\Application\chrome.exe %s"'
-" ------------------------ }}}
-" * unite                  {{{
-"
-let g:unite_source_history_yank_enable=1
-" 入力モードで開始しない
-let g:unite_enable_start_insert=0
-" バッファ&bookmark
-nnoremap <silent> ,ub :<C-u>Unite bookmark buffer<CR>
-" ファイル一覧
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file bookmark<CR>
-" レジスタ & yankhistory一覧
-nnoremap <silent> ,uy :<C-u>Unite history/yank -buffer-name=register register<CR>
-" 最近使用したファイル一覧
-nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
-" 常用セット
-nnoremap <silent> ,uu :<C-u>Unite buffer file_mru bookmark file<CR>
-" outline
-nnoremap <silent> ,uo :<C-u>Unite outline<CR>
-" twitter
-nnoremap <silent> ,ut :<C-u>Unite tweetvim<CR>
-" 全部乗せ
-nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file outline<CR>
-" ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-" ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-" ESCキーを2回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
-" ------------------------ }}}
-" * neocomplcache         {{{
-" " see http://vim-users.jp/2010/10/hack177/
-let g:neocomplcache_enable_at_startup            = 1 " Use neocomplcache.
-let g:neocomplcache_enable_smart_case            = 1 " Use smartcase.(大文字が入力されるまで大文字小文字の区別を無視)
-let g:neocomplcache_enable_camel_case_completion = 0 " camelCaseCompletion. FAと入力すると、内部ではF*A*のように変換する機能 無効
-let g:neocomplcache_enable_underbar_completion   = 1 " _区切りの補完 有効化
-let g:neocomplcache_min_syntax_length            = 3 " シンタックスをキャッシュするときの最小文字長
-" let g:neocomplcache_temporary_dir                = ''
-" let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*' " ku.vimやfizzyfinderなど、相性の悪いplugin用 不要
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell/command-history',
-    \ }
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
-endif
-" let g:neocomplcache_keyword_patterns['default'] = '\h\w*' "キーワードパターンの設定?
-
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-smap <C-k>     <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-" SuperTab like snippets behavior.
-" imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-let g:neocomplcache_enable_auto_select = 1 " AutoComplPop like behavior.(最初の候補を選択)
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
-"let g:neocomplcache_disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
-"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-" ------------------------ }}}
-" * vimshell              "{{{
-let vimshell_user_prompt    = 'getcwd()'
-"let vimshell_right_prompt   = 'fugitive#statusline()'
-" ------------------------ }}}
 " * cursoroverdictionary.vim"{{{
 vnoremap e y:CODSelected<CR>
 " ------------------------ }}}
@@ -371,57 +178,18 @@ let g:quickrun_config['*'] = { 'split': 'below' ,
                              \ 'runner': 'vimproc' }
 let g:quickrun_config['python'] = {} "{ 'outputter/buffer/append': 1 }
 " ------------------------ }}}
-" * vimfiler {{{
-let g:vimfiler_as_default_explorer = 1
-nmap <silent> ,u<Space> :VimFilerBufferDir<CR>
-" ------------------------ }}}
-" * tweetvim {{{
-nmap ,te :<C-u>TweetVimSay<CR>
-nmap ,ts :<C-u>TweetVimSearch<Space>
-nmap ,tt :<C-u>TweetVimHomeTimeline<CR>
-nmap ,tv :<C-u>TweetVimListStatuses vim<CR>
-let g:tweetvim_tweet_per_page=50
-let g:tweetvim_expand_t_co=1
-" let g:tweetvim_display_time=1
-" ------------------------ }}}
 " * flake8 {{{
 let g:flake8_ignore='E501,E221,E701,E203' " ignore line too long & multiple statements on one line
 " ------------------------ }}}
 " * restart.vim {{{
 command! RestartWithSession let g:restart_sessionoptions = 'blank,curdir,folds,help,localoptions,tabpages' | Restart
 " ------------------------ }}}
-" * cursorline            "{{{
-" via.http://d.hatena.ne.jp/thinca/20090530/1243615055
-"   augroup vimrc-auto-cursorline
-"     autocmd!
-"     autocmd CursorMoved,CursorMovedI * call s:auto_cursorline('CursorMoved')
-"     autocmd CursorHold,CursorHoldI * call s:auto_cursorline('CursorHold')
-"     autocmd WinEnter * call s:auto_cursorline('WinEnter')
-"     autocmd WinLeave * call s:auto_cursorline('WinLeave')
-"     let s:cursorline_lock = 0
-"     function! s:auto_cursorline(event)
-"       if a:event ==# 'WinEnter'
-"         setlocal cursorline
-"         let s:cursorline_lock = 2
-"       elseif a:event ==# 'WinLeave'
-"         setlocal nocursorline
-"       elseif a:event ==# 'CursorMoved'
-"         if s:cursorline_lock
-"           if 1 < s:cursorline_lock
-"             let s:cursorline_lock = 1
-"           else
-"             setlocal nocursorline
-"             let s:cursorline_lock = 0
-"           endif
-"         endif
-"       elseif a:event ==# 'CursorHold'
-"         setlocal cursorline
-"         let s:cursorline_lock = 1
-"       endif
-"     endfunction
-"   augroup END
+" * ctrlp.vim {{{
+let g:ctrlp_map = '<c-h>'
+nnoremap <silent> ,m :<C-u>CtrlPMixed<CR>
 " ------------------------ }}}
 " * project.vim {{{
+nnoremap <silent> ,pp :<C-u>Project<CR>
 let g:proj_flags="imstv"
 " ------------------------ }}}
 " * evervim {{{
@@ -444,5 +212,8 @@ nnoremap ,rd :<C-u>RedmineAddTicketWithDiscription<Space>
 nnoremap // :<C-u>Migemo<CR>
 " ------------------------ }}}
 " * sources               "{{{
-source ~/.vim//personal.vimrc
+if filereadable(expand('~/.vim/personal.vimrc'))
+    source ~/.vim/personal.vimrc
+endif
 " ------------------------ }}}
+"
