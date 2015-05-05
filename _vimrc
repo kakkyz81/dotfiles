@@ -6,14 +6,12 @@
 " Vundle init
 set nocompatible
 filetype off
-set rtp+=D:\cygwin64\bin
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-"set grepprg=grep\ -nH
 " ------------------------ }}}
 " * vundle                "{{{
 
