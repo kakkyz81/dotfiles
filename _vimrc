@@ -214,4 +214,3 @@ if filereadable(expand('~/.vim/personal.vimrc'))
     source ~/.vim/personal.vimrc
 endif
 " ------------------------ }}}
-"

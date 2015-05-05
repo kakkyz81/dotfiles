@@ -46,5 +46,5 @@ minimum_size 5 5
 #maximum_width 1900
 #-----------------------------------------------------------------------------------
 TEXT
-${execi 60 task long | tail -n +2 | head -n 9}
+${execi 60 task list | tail -n +2 | head -n 9}
 
