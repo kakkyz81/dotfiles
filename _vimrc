@@ -92,6 +92,12 @@ set hlsearch
 set ignorecase
 set incsearch
 " ------------------------ }}}
+" * color                 "{{{
+if !has('gui_running')
+    colorscheme desert
+endif
+
+" ------------------------ }}}
 " * statusline            "{{{
 " via http://d.hatena.ne.jp/ruedap/touch/20110712/vim_statusline_git_branch_name
 set statusline=%<          " 行が長すぎるときに切り詰める位置
