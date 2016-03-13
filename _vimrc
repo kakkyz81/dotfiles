@@ -3,39 +3,41 @@
 "  _vimrc main
 " -------------------------------------------------------------------------
 "
-" Vundle init
-set nocompatible
-filetype off
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" vimproc / ref.http://d.hatena.ne.jp/thinca/20160302/1456892154
+let g:vimproc#download_windows_dll = 1
+" $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+"  plug.vim
+" $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+"
+let s:vim_plug_url='https://github.com/junegunn/vim-plug'
+if !filereadable(expand('~/.vim/vim-plug/plug.vim'))
+    call system("git clone " . s:vim_plug_url . " " . $HOME . "/.vim/vim-plug/")
+endif
+source ~/.vim/vim-plug/plug.vim
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-" ------------------------ }}}
-" * vundle                "{{{
+Plug 'BufOnly.vim'
+Plug 'Shougo/vimproc.vim'
+Plug 'bufferlist.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'h1mesuke/vim-alignta'
+Plug 'kakkyz81/evervim'
+Plug 'nelstrom/vim-markdown-folding', { 'for' : 'markdown' }
+Plug 'nvie/vim-flake8' , { 'for' : 'python' }
+Plug 'othree/eregex.vim'
+Plug 'project.tar.gz'
+Plug 'restart.vim'
+Plug 'thinca/vim-quickrun'
+Plug 'thinca/vim-zenspace'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tyru/open-browser.vim'
 
-" from github
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'h1mesuke/vim-alignta'
-" Plugin 'kakkyz81/evervim' , { 'rev' : 'unite' , 'depends' : 'tyru/open-browser.vim'}
-Plugin 'kakkyz81/evervim'
-Plugin 'nelstrom/vim-markdown-folding'
-" Plugin 'nvie/vim-flake8'
-" Plugin 'kakkyz81/eregex.vim'
-Plugin 'thinca/vim-quickrun'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tyru/open-browser.vim'
-" from vim.org
-Plugin 'BufOnly.vim'
-Plugin 'bufferlist.vim'
-Plugin 'project.tar.gz'
-Plugin 'restart.vim'
-
-call vundle#end()
+call plug#end()
+" $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 filetype plugin indent on
 " ------------------------ }}}
+" --## vim   ##--------------------------------------------------------
 " * general               "{{{
 set autoread
 set visualbell            " no sound flash bell
@@ -122,6 +124,7 @@ set statusline+=%P         " ファイル内の何％の位置にあるか
 " ------------------------ }}}
 " * function key mapping   {{{
 map <F1> :lcd %:p:h<CR>
+map <S-F1> :!explorer %:p:h<CR>
 "map <F2>
 map <F3> :r!cat<CR>
 "map <F4>
@@ -140,9 +143,6 @@ nmap ,gl :Glog<CR>:copen<CR>
 nmap ,gd :Gdiff<CR>
 nmap ,gs :Gstatus<CR>
 " ------------------------ }}}
-" * cursoroverdictionary.vim"{{{
-vnoremap e y:CODSelected<CR>
-" ------------------------ }}}
 " * key mapping            {{{
 nmap <C-w>t :tabn<CR>
 nmap <C-w>e :tabnew
@@ -156,6 +156,7 @@ nmap <C-r>m :redir @*<CR>:silent messages<CR>:redir END<CR>
 " to doの一覧をquickfixに表示する via.http://d.hatena.ne.jp/akihito_s/20110727
 nmap <Leader>t :noautocmd vimgrep /TODO/j **/*.xml **/*.scala **/*.java <CR>:cw<CR>
 " ------------------------ }}}
+" --## plugin ##--------------------------------------------------------
 " * quickrun.vim          "{{{
 function! s:clear_quickrunbuffer()
     let winnr = 1
@@ -185,10 +186,12 @@ command! RestartWithSession let g:restart_sessionoptions = 'blank,curdir,folds,h
 " * ctrlp.vim {{{
 let g:ctrlp_map = '<c-h>'
 nnoremap <silent> ,m :<C-u>CtrlPMixed<CR>
+nnoremap <silent> ,mm :<C-u>CtrlPMRU<CR>
 " ------------------------ }}}
 " * project.vim {{{
 nnoremap <silent> ,pp :<C-u>Project<CR>
-let g:proj_flags="imstv"
+nnoremap <silent> <C-o><C-p> :<C-u>Project<CR>
+let g:proj_flags="imst"
 " ------------------------ }}}
 " * evervim {{{
 nnoremap <silent> ,el :<C-u>EvervimNotebookList<CR>
@@ -208,6 +211,23 @@ nnoremap ,rd :<C-u>RedmineAddTicketWithDiscription<Space>
 " ------------------------ }}}
 " * migemo {{{
 nnoremap // :<C-u>Migemo<CR>
+" ------------------------ }}}
+" * grep use pt {{{
+if has('win32') || has ('win64')
+    if executable("C:/Users/kakkyz/Dropbox/apps/pt_windows_amd64/pt.exe")
+        " 文字化け対策で/o sjisを付与する
+        set grepprg=C:\Users\kakkyz\Dropbox\apps\pt_windows_amd64\pt.exe\ /o\ sjis
+    else
+        echoerr "need install pt -> https://github.com/monochromegane/the_platinum_searcher/releases"
+    endif
+endif
+if has('unix')
+    if executable("pt")
+        set grepprg=pt
+    else
+        echoerr "need install pt -> https://github.com/monochromegane/the_platinum_searcher/releases"
+    endif
+endif
 " ------------------------ }}}
 " * sources               "{{{
 if filereadable(expand('~/.vim/personal.vimrc'))
