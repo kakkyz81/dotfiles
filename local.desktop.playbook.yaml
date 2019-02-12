@@ -1,0 +1,10 @@
+# ansible-playbook local.desktop.playbook.yaml --ask-become-pass
+- hosts: 127.0.0.1
+  tasks:
+  - name: aptinstall
+    become: yes
+    apt: name={{ item }} update_cache=yes cache_valid_time=3600
+    with_items:
+      - vnc4server
+      - lubuntu-desktop
+      - websockify
