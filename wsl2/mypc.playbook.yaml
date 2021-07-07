@@ -18,12 +18,14 @@
     shell: git config --global user.email "kakkyz81@mail.com" &&
            git config --global user.name "kakkyz" &&
            git config --global alias.st status &&
-           git config --global alias.ci commit &&
-           git config --global alias.di diff &&
-           git config --global alias.dic diff --cached
-
-#   apt: name={{ item }} update_cache=yes cache_valid_time=3601
-#   with_items:
-#     - neovim
-#     - tmux
-#     - fish
+           git config --global alias.ci commit 
+  - name: filescopy
+    copy: src=files/dotfiles dest=~/ force=yes
+  - name: bincopy 
+    copy: src=files/bin dest=~/ 
+  - name: chmod-bin-dir
+    shell: chmod 744 ~/bin/*
+  - name: link-dotfiles
+    shell: bash ~/dotfiles/install.sh
+    args:
+      chdir: ~/dotfiles
