@@ -1,0 +1,1 @@
+ansible-playbook mypc.playbook.yaml  --ask-become-pass

@@ -1,0 +1,29 @@
+#- hosts: all
+#  tasks:
+#    name: aptinstall
+#    become: yes
+#    apt: name={{ item }} update_cache=yes cache_valid_time=3600
+#    with_items:
+#      - neovim
+#      - fish
+#      - tmux
+- hosts: localhost
+  user: kakkyz
+  tasks:
+  - name: aptinstall
+    become: yes
+    apt: 
+      name: [neovim, tmux, fish, git, taskwarrior]
+  - name: setupgit
+    shell: git config --global user.email "kakkyz81@mail.com" &&
+           git config --global user.name "kakkyz" &&
+           git config --global alias.st status &&
+           git config --global alias.ci commit &&
+           git config --global alias.di diff &&
+           git config --global alias.dic diff --cached
+
+#   apt: name={{ item }} update_cache=yes cache_valid_time=3601
+#   with_items:
+#     - neovim
+#     - tmux
+#     - fish
